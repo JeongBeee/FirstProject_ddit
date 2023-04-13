@@ -4,6 +4,12 @@ public class RegisterVO {
 	private String id;
 	private String examCode;
 	private String siteCode;
+	
+	// deleteOneOfRegisterInfo(RegisterVO vo)용
+	public RegisterVO(String id) {
+		super();
+		this.id = id;
+	}
 
 	public RegisterVO(String id, String examCode, String siteCode) {
 		super();
