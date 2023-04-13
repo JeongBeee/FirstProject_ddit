@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Statement;
+import java.nio.Buffer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,10 +15,7 @@ import vo.RegisterVO;
 public class RegisterDAO {
 	public static void main(String[] args) throws Exception {
 		RegisterDAO dao = new RegisterDAO();
-		List<RegisterVO> registerLists = dao.selectRegisterInfos();
-		for (RegisterVO vo : registerLists) {
-			System.out.println(vo);
-		}
+		dao.updateInfo(dao.selectRegisterInfo("ksm"));
 	}
 
 	/**
@@ -33,7 +31,7 @@ public class RegisterDAO {
 
 		Statement statement = connection.createStatement();
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("SELECT ID, EXAMCODE, SITECODE FROM REGISTER");
+		buffer.append("SELECT * FROM REGISTER");
 		String sql = buffer.toString();
 		ResultSet resultSet = statement.executeQuery(sql);
 
@@ -53,6 +51,24 @@ public class RegisterDAO {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
 				"mandoo");
+
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("SELECT * FROM REGISTER WHERE ID = ?");
+		String sql = buffer.toString();
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, searchId);
+		ResultSet resultSet = preparedStatement.executeQuery();
+
+		RegisterVO vo = null;
+		if (resultSet.next()) {
+			String id = resultSet.getString("ID");
+			String examCode = resultSet.getString("EXAMCODE");
+			String siteCode = resultSet.getString("SITECODE");
+			vo = new RegisterVO(id, examCode, siteCode);
+		}
+		close(resultSet, preparedStatement, connection);
+		return vo;
 	}
 
 	/**
@@ -85,63 +101,52 @@ public class RegisterDAO {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:XE", "mandoo",
 				"mandoo");
-		;
 
-		String siteCode = null; // 시험장
-		String examCode = null; // 과목
-		String examDate = null; // 일시
 		int count = 0;
 
 		System.out.print("변경할 항목을 입력하세요. \n1. 시험장 | 2. 시험과목 | 3. 응시 일시 >> ");
 		int choice = Integer.parseInt(new Scanner(System.in).nextLine());
-		if (choice == 1) {
-			siteCode = new Scanner(System.in).nextLine();
-			examCode = vo.getExamCode();
-			examDate = vo.getSiteCode().substring(2); // GW2
-
+		if (choice == 1) { // 시험장 도시 변경
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(
 					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
 			String sql = buffer.toString();
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, siteCode.substring(0, 1));
+			preparedStatement.setString(1, new Scanner(System.in).nextLine());
 			preparedStatement.setString(2, vo.getSiteCode().substring(2));
 			preparedStatement.setString(3, vo.getId());
 
 			count = preparedStatement.executeUpdate();
-			preparedStatement.close();
-			connection.close();
-		} else if (choice == 2) {
-			siteCode = vo.getSiteCode();
-			examCode = new Scanner(System.in).nextLine();
+			close(null, preparedStatement, connection);
 
+		} else if (choice == 2) { // 과목 변경
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
 			String sql = buffer.toString();
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, examCode);
+			preparedStatement.setString(1, new Scanner(System.in).nextLine());
 			preparedStatement.setString(2, vo.getId());
 
 			count = preparedStatement.executeUpdate();
-			preparedStatement.close();
-			connection.close();
-		} else if (choice == 3) {
-			siteCode = vo.getSiteCode();
-			examCode = "EEW";
+			close(null, preparedStatement, connection);
 
+		}
+		if (choice == 1) { // 시험장 도시 변경
 			StringBuffer buffer = new StringBuffer();
-			buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
+			buffer.append(
+					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
 			String sql = buffer.toString();
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, examCode);
-			preparedStatement.setString(2, vo.getId());
+			preparedStatement.setString(1, new Scanner(System.in).nextLine());
+			preparedStatement.setString(2, vo.getSiteCode().substring(2));
+			preparedStatement.setString(3, vo.getId());
 
 			count = preparedStatement.executeUpdate();
-			preparedStatement.close();
-			connection.close();
+			close(null, preparedStatement, connection);
+
 		}
 		return count;
 	}
