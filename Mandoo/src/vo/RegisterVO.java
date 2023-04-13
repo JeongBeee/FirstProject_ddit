@@ -1,3 +1,4 @@
+package vo;
 
 public class RegisterVO {
 	private String id;

@@ -1,3 +1,4 @@
+package vo;
 
 public class ExamVO {
 	private String examCode;

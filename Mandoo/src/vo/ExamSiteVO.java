@@ -1,4 +1,4 @@
-
+package vo;
 public class ExamSiteVO {
 
 	private String siteCode;
