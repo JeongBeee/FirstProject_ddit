@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;&apos; to &apos;dao.ExamineeDAO.deleteMyInfo(...)&apos;&#x0D;&#x0A;- Original project: &apos;Mandoo&apos;&#x0D;&#x0A;- Destination element: &apos;dao.ExamineeDAO.deleteMyInfo(...)&apos;&#x0D;&#x0A;- Original element: &apos;dao.ExamineeDAO.deleteMyInfo(...)&apos;" description="Copy method" destination="/src&lt;dao{ExamineeDAO.java[ExamineeDAO~deleteMyInfo~QExamineeVO;" element1="/src&lt;dao{ExamineeDAO.java[ExamineeDAO~deleteMyInfo~QExamineeVO;" flags="589830" id="org.eclipse.jdt.ui.copy" members="1" policy="org.eclipse.jdt.ui.copyMembers" stamp="1681381415125" version="1.0"/>
+</session>

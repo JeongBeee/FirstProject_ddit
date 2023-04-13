@@ -1,0 +1,20 @@
+package service;
+
+import dao.ExamineeDAO;
+import vo.ExamineeVO;
+
+public class ExamineeService {
+	
+	
+	public int insertMyInfo(ExamineeVO vo) throws Exception {
+		
+	}
+
+	public ExamineeVO updateInfo(ExamineeVO vo) {
+		
+	}
+
+	public int deleteMyInfo(ExamineeVO vo) throws Exception {
+		
+	}
+}

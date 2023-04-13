@@ -1,0 +1,165 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+import vo.ExamineeVO;
+
+public class ExamineeDAO {
+	public static void main(String[] args) throws Exception {
+		ExamineeDAO dao = new ExamineeDAO();
+		dao.insertMyInfo(new ExamineeVO("ksmq", "김선민", "1q2w3e4r", "01012341234", "ksm@naver.com"));
+	}
+
+	Scanner scanner = new Scanner(System.in);
+	/**
+	 * 회원 가입 메소드
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertMyInfo(ExamineeVO vo) throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url = "jdbc:oracle:thin:@192.168.142.33:XE";
+		String user = "mandoo";
+		String password = "mandoo";
+		Connection connection = DriverManager.getConnection(url, user, password);
+		StringBuilder builder = new StringBuilder();
+		builder.append("INSERT INTO ");
+		builder.append(" examinee ");
+		builder.append(" ( ");
+		builder.append(" ID, ");
+		builder.append(" NAME, ");
+		builder.append(" PASSWORD, ");
+		builder.append(" TELNO, ");
+		builder.append(" EMAIL ");
+		builder.append(" ) ");
+		builder.append(" VALUES ");
+		builder.append(" ( ");
+		builder.append(" ?, ");
+		builder.append(" ?, ");
+		builder.append(" ?, ");
+		builder.append(" ?, ");
+		builder.append(" ? ");
+		builder.append(" ) ");
+		String sql = builder.toString();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, vo.getId());
+		statement.setString(2, vo.getName());
+		statement.setString(3, vo.getPassword());
+		statement.setString(4, vo.getTelNo());
+		statement.setString(5, vo.getEmail());
+
+		int count = statement.executeUpdate();
+		statement.close();
+		connection.close();
+		return count;
+	}
+	/**
+	 * 회원 정보 업데이트 메소드
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	public ExamineeVO updateInfo(ExamineeVO vo) throws Exception {
+		int choice = Integer.parseInt(scanner.nextLine());
+		String password = null;
+		String telNo = null;
+		String email = null;
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url = "jdbc:oracle:thin:@192.168.142.33:XE";
+		String user = "mandoo";
+		String dbPassword = "mandoo";
+		Connection connection = DriverManager.getConnection(url, user, dbPassword);
+		
+		if(choice == 1) {
+			password = scanner.nextLine();
+			telNo = vo.getTelNo();
+			email = vo.getEmail();
+			
+			StringBuilder builder = new StringBuilder();
+			builder.append("UPDATE ");
+			builder.append(" EXAMINEE ");
+			builder.append(" SET ");
+			builder.append(" PASSWAORD = ? ");
+			builder.append(" WHERE ");
+			builder.append(" ID = ? ");
+			String sql = builder.toString();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, vo.getPassword());
+			statement.setString(2, vo.getId());
+			statement.close();
+			connection.close();
+			
+		}else if(choice == 2) {
+			password = vo.getPassword();
+			telNo = scanner.nextLine();
+			email = vo.getEmail();
+			
+			StringBuilder builder = new StringBuilder();
+			builder.append("UPDATE ");
+			builder.append(" EXAMINEE ");
+			builder.append(" SET ");
+			builder.append(" TELNO = ? ");
+			builder.append(" WHERE ");
+			builder.append(" ID = ? ");
+			String sql = builder.toString();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, vo.getTelNo());
+			statement.setString(2, vo.getId());
+			statement.close();
+			connection.close();
+			
+		}else if(choice == 3) {
+			password = vo.getPassword();
+			telNo = vo.getTelNo();
+			email = scanner.nextLine();
+			
+			StringBuilder builder = new StringBuilder();
+			builder.append("UPDATE ");
+			builder.append(" EXAMINEE ");
+			builder.append(" SET ");
+			builder.append(" EMAIL = ? ");
+			builder.append(" WHERE ");
+			builder.append(" ID = ? ");
+			String sql = builder.toString();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, vo.getEmail());
+			statement.setString(2, vo.getId());
+			statement.close();
+			connection.close();
+			
+		}
+		return new ExamineeVO(password, telNo, email);
+	}
+	/**
+	 * 회원 정보를 삭제하는 메소드
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteMyInfo(ExamineeVO vo) throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url = "jdbc:oracle:thin:@192.168.142.33:XE";
+		String user = "mandoo";
+		String password = "mandoo";
+		Connection connection = DriverManager.getConnection(url, user, password);
+		StringBuilder builder = new StringBuilder();
+		builder.append("DELETE FROM ");
+		builder.append(" EXAMINEE ");
+		builder.append(" WHERE ");
+		builder.append(" ID = ?, ");
+		builder.append(" PASSWORD = ? ");
+		String sql = builder.toString();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, vo.getId());
+		statement.setString(2, vo.getPassword());
+		int count = statement.executeUpdate();
+		statement.close();
+		connection.close();
+		return count;
+	}
+}
