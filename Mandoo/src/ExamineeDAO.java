@@ -1,4 +1,3 @@
-package Examinee;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 
 public class ExamineeDAO {
 	
-	Scanner scanner = new
+	Scanner scanner = new Scanner(System.in);
 	
 	public int insertMyInfo(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -43,9 +42,23 @@ public class ExamineeDAO {
 		return count;
 	}
 	
-	public ExamineeVO updateInfo() {
-		int choice = Integer.parseInt()
-		
+	public String updateInfo(ExamineeVO vo) {
+		int choice = Integer.parseInt(scanner.nextLine());
+		if(choice == 1) {
+			String password = scanner.nextLine();
+			String telNo = vo.getPassword();
+			String email = vo.getPassword();
+		}else if(choice == 2) {
+			String password = vo.getPassword();
+			String telNo = scanner.nextLine();
+			String email = vo.getPassword();
+		}else if(choice == 3) {
+			String password = vo.getPassword();
+			String telNo = vo.getTelNo();
+			String email = scanner.nextLine();
+			return ExamineeVO(password, telNo, email);
+		}
+		return ExamineeVO(password, telNo, email);
 	}
 
 	public int deleteMyInfo(ExamineeVO vo) throws Exception {

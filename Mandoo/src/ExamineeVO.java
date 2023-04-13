@@ -1,4 +1,3 @@
-package Examinee;
 
 public class ExamineeVO {
 	private String id;
