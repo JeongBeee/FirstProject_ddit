@@ -25,7 +25,7 @@ public class RegisterView {
 		return Integer.parseInt(scanner.nextLine());
 	}
 
-	public ExamineeVO insertSignInfo(Scanner scanner) { // 1. 회원가입
+	public ExamineeVO insertSignInfo(Scanner scanner) throws Exception { // 1. 회원가입
 		System.out.println("-----------------------------------");
 		System.out.println("회원정보를 입력하세요.");
 		System.out.print("아이디: ");
@@ -40,9 +40,8 @@ public class RegisterView {
 		String email = scanner.nextLine();
 		System.out.println("회원가입이 완료되었습니다. 첫 화면으로 돌아갑니다.");
 		System.out.println("-----------------------------------");
-		//ExamineeDAO dao = new ExamineeDAO();
-		return new ExamineeVO(password, telNo, email);
-		//return dao.insertMyInfo(new ExamineeVO(id, name, password, telNo, email));
+		return new ExamineeVO(id, name, password, telNo, email);
+
 	}
 
 	public ExamineeVO login(Scanner scanner) { // 2. 로그인
