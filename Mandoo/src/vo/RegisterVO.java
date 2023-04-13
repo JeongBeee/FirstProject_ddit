@@ -5,6 +5,12 @@ public class RegisterVO {
 	private String examCode;
 	private String siteCode;
 
+	// deleteOneOfRegisterInfo(RegisterVO vo)용
+	public RegisterVO(String id) {
+		super();
+		this.id = id;
+	}
+
 	public RegisterVO(String id, String examCode, String siteCode) {
 		super();
 		this.id = id;
@@ -34,6 +40,11 @@ public class RegisterVO {
 
 	public void setSiteCode(String siteCode) {
 		this.siteCode = siteCode;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s\t%s\t%s", id, examCode, siteCode);
 	}
 
 }
