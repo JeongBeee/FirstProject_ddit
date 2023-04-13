@@ -133,7 +133,7 @@ public class RegisterDAO {
 			close(null, preparedStatement, connection);
 
 		}
-		if (choice == 1) { // 시험장 도시 변경
+		if (choice == 3) { // 시험장 도시 변경
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(
 					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
