@@ -7,9 +7,9 @@ public class ExamineeVO {
 	private String telNo;
 	private String email;
 	
-	public ExamineeVO(String id, String name) {
+	public ExamineeVO(String id, String password) {
 		this.id = id;
-		this.name = name;
+		this.password = password;
 	}
 	
 	public ExamineeVO(String password, String telNo, String email) {
