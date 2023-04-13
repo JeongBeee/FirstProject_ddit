@@ -8,11 +8,6 @@ import java.util.Scanner;
 import vo.ExamineeVO;
 
 public class ExamineeDAO {
-	public static void main(String[] args) throws Exception {
-		ExamineeDAO dao = new ExamineeDAO();
-//		dao.insertMyInfo(new ExamineeVO("ksm", "김선민", "1q2w3e4r", "01012341234", "ksm@naver.com"));
-//		dao.deleteMyInfo(new ExamineeVO("ksm", "1q2w3e4r"));
-	}
 
 	Scanner scanner = new Scanner(System.in);
 

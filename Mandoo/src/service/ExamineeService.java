@@ -10,7 +10,7 @@ public class ExamineeService {
 		return dao.insertMyInfo(vo);
 	}
 
-	public ExamineeVO updateInfo(ExamineeVO vo) throws Exception {
+	public int updateInfo(ExamineeVO vo) throws Exception {
 		return dao.updateInfo(vo);
 	}
 
