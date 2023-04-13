@@ -1,7 +1,9 @@
 package view;
 
+import java.security.PublicKey;
 import java.util.Scanner;
 
+import dao.ExamineeDAO;
 import vo.ExamSiteVO;
 import vo.ExamVO;
 import vo.ExamineeVO;
@@ -36,9 +38,10 @@ public class RegisterView {
 		String telNo = scanner.nextLine();
 		System.out.print("이메일: ");
 		String email = scanner.nextLine();
-		System.out.println("회원가입이 완료되었습니다. 첫 페이지로 돌아갑니다.");
 		System.out.println("-----------------------------------");
-		return new ExamineeVO(id, name, password, telNo, email);
+		//ExamineeDAO dao = new ExamineeDAO();
+		return new ExamineeVO(password, telNo, email);
+		//return dao.insertMyInfo(new ExamineeVO(id, name, password, telNo, email));
 	}
 
 	public ExamineeVO login(Scanner scanner) { // 2. 로그인
@@ -61,58 +64,57 @@ public class RegisterView {
 	}
 
 	public RegisterVO registerSeq(Scanner scanner) { // 1. 접수하기
-	 System.out.println("---------------------------------------------");
-	 System.out.println("수험장을 선택하세요.");
-	 String choiceExamSite = choiceExamSite(); // 지역명
-	 System.out.println("------------------------------------------------------------");
-	 System.out.println("시험 과목을 선택하세요.");
-	 String choiceExam = choiceExam(); // 시험코드
-	 System.out.println("------------------------------------------------------------");
-     String choiceExamTurn = choiceExamTurn();
-	 System.out.println("------------------------------------------------------------");
-	// System.out.println(id + sitename + examname + confirmExamTurn + "시험을 선택하셨습니다.");
-	// System.out.println("계속 진행하시겠습니까? [y/n]"); // 맞냐
-	// String answer = scanner.nextLine();
-	 System.out.println("------------------------------------------------------------");
-	 System.out.println("응시료는 19400원 입니다.");
-	 System.out.println("결제 방식을 선택하세요.");
-	 System.out.println("1. 신용카드 | 2. 계좌이체 | 3. 휴대폰 결제");
-	 System.out.println("------------------------------------------------------------");
-	 int choosePayment = scanner.nextInt();
-	 System.out.println("접수가 완료되었습니다.");
-	 System.out.println("------------------------------------------------------------");
-	 String id = 
-	 return new RegisterVO(id, choiceExam, choiceExamSite.concat(choiceExamTurn));
- }
+		System.out.println("---------------------------------------------");
+		System.out.println("수험장을 선택하세요.");
+		String choiceExamSite = choiceExamSite(); // 지역명
+		System.out.println("------------------------------------------------------------");
+		System.out.println("시험 과목을 선택하세요.");
+		String choiceExam = choiceExam(); // 시험코드
+		System.out.println("------------------------------------------------------------");
+		String choiceExamTurn = choiceExamTurn();
+		System.out.println("------------------------------------------------------------");
+		// System.out.println(id + sitename + examname + confirmExamTurn + "시험을
+		// 선택하셨습니다.");
+		// System.out.println("계속 진행하시겠습니까? [y/n]"); // 맞냐
+		// String answer = scanner.nextLine();
+		System.out.println("------------------------------------------------------------");
+		System.out.println("응시료는 19400원 입니다.");
+		System.out.println("결제 방식을 선택하세요.");
+		System.out.println("1. 신용카드 | 2. 계좌이체 | 3. 휴대폰 결제");
+		System.out.println("------------------------------------------------------------");
+		int choosePayment = scanner.nextInt();
+		System.out.println("접수가 완료되었습니다.");
+		System.out.println("------------------------------------------------------------");
+		// String id =
+		// login에서 저장한 id를 불러와서 registerVO에 저장하려면
+		return new RegisterVO(null, choiceExam, choiceExamSite.concat(choiceExamTurn));
+	}
 
-	
 	public String choiceExamTurn() {
-			String[] examTurns = new String[3];
-			examTurns[0] = "1. 23/03/15 오전 9시";
-			examTurns[1] = "2. 23/06/04 오전 9시";
-			examTurns[2] = "3. 23/07/23 오전 9시";
-			System.out.println("------------------------------------------------------------");
+		String[] examTurns = new String[3];
+		examTurns[0] = "1. 23/03/15 오전 9시";
+		examTurns[1] = "2. 23/06/04 오전 9시";
+		examTurns[2] = "3. 23/07/23 오전 9시";
+		System.out.println("------------------------------------------------------------");
 
-			for (int i = 0; i < examTurns.length-1; i++) {
-				System.out.print(examTurns[i] + " | ");
-			}
-			System.out.println(examTurns[2]);
-			
-			System.out.println("------------------------------------------------------------");
-			System.out.print("응시할 시험 회차를 선택하세요 > ");
-			int choiceExamTurn = Integer.parseInt(scanner.nextLine());
-
-			//String confirmExamTurn = null;
-		
-			String confirmExamTurn = examTurns[choiceExamTurn - 1].substring(3);
-
-			System.out.print("<" + confirmExamTurn + "> 시험을 선택하셨습니다.");
-			return confirmExamTurn;
+		for (int i = 0; i < examTurns.length - 1; i++) {
+			System.out.print(examTurns[i] + " | ");
 		}
+		System.out.println(examTurns[2]);
 
-	
-	public String choiceExamSite()
-	{
+		System.out.println("------------------------------------------------------------");
+		System.out.print("응시할 시험 회차를 선택하세요 > ");
+		int choiceExamTurn = Integer.parseInt(scanner.nextLine());
+
+		// String confirmExamTurn = null;
+
+		String confirmExamTurn = examTurns[choiceExamTurn - 1].substring(3);
+
+		System.out.print("<" + confirmExamTurn + "> 시험을 선택하셨습니다.");
+		return confirmExamTurn;
+	}
+
+	public String choiceExamSite() {
 		String[] siteNames = new String[12];
 		siteNames[0] = "1. 서울";
 		siteNames[1] = "2. 대전";
@@ -147,7 +149,6 @@ public class RegisterView {
 		System.out.print(confirmSite + " 수험장을 선택하셨습니다.");
 		return confirmSite;
 	}
-	
 
 	public String choiceExam() {
 		String[] examNames = new String[10];
@@ -189,14 +190,14 @@ public class RegisterView {
 		return Integer.parseInt(scanner.nextLine());
 	}
 
-	public int showRegister(Scanner scanner) { // 1. 접수 내역 확인 - 황금색
-		System.out.println("-----------------------------------");
-		System.out.println(id + siteName + examName + examDate); // 일단
-		System.out.println("초기화면으로 돌아가시겠습니까? [y/n]");
-		String choose = scanner.nextLine();
-		System.out.println("-----------------------------------");
-// int 맞는지, 접수내역 여러개 조회되도록 어떻게 할지
-	}
+//	public int showRegister(Scanner scanner) { // 1. 접수 내역 확인 - 황금색
+//		System.out.println("-----------------------------------");
+////		System.out.println(id + siteName + examName + examDate); // 일단
+//		System.out.println("초기화면으로 돌아가시겠습니까? [y/n]");
+//		String choose = scanner.nextLine();
+//		System.out.println("-----------------------------------");
+//// int 맞는지, 접수내역 여러개 조회되도록 어떻게 할지
+//	}
 
 	public int modifyinfoMenu(Scanner scanner) { // 2. 회원정보 및 접수내역 수정
 		System.out.println("-----------------------------------");
@@ -207,7 +208,7 @@ public class RegisterView {
 	}
 
 	public ExamineeVO modifySigninfoMenu(Scanner scanner) { // 2-1 회원 정보 수정
-		System.out.println("1. 비밀번호 | 2. 전화번호 | 3. 이메일");
+		System.out.println("1. 비밀번호 | 2. 전화번호 | 3. 이메일 | 4. 회원 탈퇴");
 		// 1번 2번 3번 입력 어떻게 받는지?
 		System.out.println("새 비밀번호를 입력하세요. : ");
 		String password = scanner.nextLine();
@@ -218,15 +219,30 @@ public class RegisterView {
 		return new ExamineeVO(password, telNo, email);
 	}
 
-	public ResgisterVO modifyExaminfoMenu(Scanner scanner) { // 2-2 접수 정보 수정
-		System.out.println("1. 시험장 | 2. 과목 | 3. 응시회차");
-		// 1번 2번 3번 입력 어떻게 받는지?
-		System.out.println("새 비밀번호를 입력하세요. : ");
-		String password = scanner.nextLine();
-		System.out.println("새 전화번호를 입력하세요. : ");
-		String telNo = scanner.nextLine();
-		System.out.println("새 이메일을 입력하세요. : ");
-		String email = scanner.nextLine();
-	}
+//	public ResgisterVO modifyExaminfoMenu(Scanner scanner) { // 2-2 접수 정보 수정
+//		System.out.println("1. 시험장 | 2. 과목 | 3. 응시회차 | 4. 접수 취소");
+//		// 1번 2번 3번 입력 어떻게 받는지?
+//		System.out.println("새 비밀번호를 입력하세요. : ");
+//		String password = scanner.nextLine();
+//		System.out.println("새 전화번호를 입력하세요. : ");
+//		String telNo = scanner.nextLine();
+//		System.out.println("새 이메일을 입력하세요. : ");
+//		String email = scanner.nextLine();
+//		// 같은 문제
+//		return new RegisterVO(password, telNo, email);
+//
+//	public ResgisterVO modifyExaminfoMenu(Scanner scanner) { // 3. 접수 취소
+//		System.out.println("1. 시험장 | 2. 과목 | 3. 응시회차");
+//		// 1번 2번 3번 입력 어떻게 받는지?
+//		System.out.println("새 비밀번호를 입력하세요. : ");
+//		String password = scanner.nextLine();
+//		System.out.println("새 전화번호를 입력하세요. : ");
+//		String telNo = scanner.nextLine();
+//		System.out.println("새 이메일을 입력하세요. : ");
+//		String email = scanner.nextLine();
+//		// 같은 문제
+//		return new RegisterVO(password, telNo, email);
+//
+//	}
 
 }
