@@ -38,6 +38,7 @@ public class RegisterView {
 		String telNo = scanner.nextLine();
 		System.out.print("이메일: ");
 		String email = scanner.nextLine();
+		System.out.println("회원가입이 완료되었습니다. 첫 화면으로 돌아갑니다.");
 		System.out.println("-----------------------------------");
 		//ExamineeDAO dao = new ExamineeDAO();
 		return new ExamineeVO(password, telNo, email);
