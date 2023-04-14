@@ -22,10 +22,29 @@ public class FrontController {
 			ExamineeVO examinees = registerView.insertSignInfo(scanner); // 회원가입 창 메서드를 불러서 
 			int insertExaminee = service.insertMyInfo(examinees);
 			break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		case 2: // 로그인
+			ExamineeVO examinees = registerView.login(scanner);
+			int selectExaminee = service.selectMyInfo(examinees);
+			break;
+		}
+		int modifyinfoMenu = registerView.modifyinfoMenu(scanner);
+		switch(modifyinfoMenu) {
+		case 1: //비밀번호
+			ExamineeVO examinees = registerView.modifySigninfoMenu(scanner);
+			
+		case 2: //전화번호
+		case 3: //이메일
+		case 4: //회원탈퇴			
+=======
+>>>>>>> parent of c8675e0 (FrontController 수정)
 		//case 2: // 로그인
 		//	ExamineeVO examinees = registerView.login(scanner);
 		//	int selectExaminee = service.selectMyInfo(examinees);
 		//	break;
+>>>>>>> origin/main
 		}
     }
 	}
