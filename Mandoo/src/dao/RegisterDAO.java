@@ -13,11 +13,6 @@ import java.util.Scanner;
 import vo.RegisterVO;
 
 public class RegisterDAO {
-	public static void main(String[] args) throws Exception {
-		RegisterDAO dao = new RegisterDAO();
-		dao.updateInfo(dao.selectRegisterInfo("ksm"));
-	}
-
 	/**
 	 * 특정 아이디의 모든 접수 정보를 출력하는 메서드.
 	 * 
@@ -47,30 +42,6 @@ public class RegisterDAO {
 		return list;
 	}
 
-	public RegisterVO selectRegisterInfo(String searchId) throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
-
-		StringBuffer buffer = new StringBuffer();
-		buffer.append("SELECT * FROM REGISTER WHERE ID = ?");
-		String sql = buffer.toString();
-
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1, searchId);
-		ResultSet resultSet = preparedStatement.executeQuery();
-
-		RegisterVO vo = null;
-		if (resultSet.next()) {
-			String id = resultSet.getString("ID");
-			String examCode = resultSet.getString("EXAMCODE");
-			String siteCode = resultSet.getString("SITECODE");
-			vo = new RegisterVO(id, examCode, siteCode);
-		}
-		close(resultSet, preparedStatement, connection);
-		return vo;
-	}
-
 	/**
 	 * 회원가입을 마친 사용자의 접수 정보를 테이블에 삽입하는 메서드.
 	 * 
@@ -97,6 +68,12 @@ public class RegisterDAO {
 		return count;
 	}
 
+	/**
+	 * 시험을 접수한 사용자의 접수 내역을 수정하는 메서드.
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
 	public int updateInfo(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:XE", "mandoo",
@@ -104,8 +81,6 @@ public class RegisterDAO {
 
 		int count = 0;
 
-		System.out.print("변경할 항목을 입력하세요. \n1. 시험장 | 2. 시험과목 | 3. 응시 일시 >> ");
-		int choice = Integer.parseInt(new Scanner(System.in).nextLine());
 		if (choice == 1) { // 시험장 도시 변경
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(
