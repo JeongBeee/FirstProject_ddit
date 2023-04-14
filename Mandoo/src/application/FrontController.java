@@ -24,7 +24,7 @@ public class FrontController {
 			break;
 		//case 2: // 로그인
 		//	ExamineeVO examinees = registerView.login(scanner);
-		//	int selectExaminee = service.selectMyInfo(examinees);
+		//	int selectExaminee = service.login(examinees);
 		//	break;
 		}
     }

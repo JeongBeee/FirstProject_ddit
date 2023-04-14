@@ -20,10 +20,6 @@ public class RegisterService {
 		return dao.insertRegisterInfo(vo);
 	}
 
-	public int updateInfo(RegisterVO vo) throws Exception {
-		return dao.updateInfo(vo);
-	}
-
 	public int deleteOneOfRegisterInfo(RegisterVO vo) throws Exception {
 		return dao.deleteOneOfRegisterInfo(vo);
 	}
