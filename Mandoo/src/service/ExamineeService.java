@@ -4,14 +4,14 @@ import dao.ExamineeDAO;
 import vo.ExamineeVO;
 
 public class ExamineeService {
-	ExamineeDAO dao = new ExamineeDAO();
+	private ExamineeDAO dao = new ExamineeDAO();
 	
 	public int insertMyInfo(ExamineeVO vo) throws Exception {
 		return dao.insertMyInfo(vo);
 	}
 
-	public int updateInfo(ExamineeVO vo) throws Exception {
-		return dao.updateInfo(vo);
+	public int updatePassword(ExamineeVO vo) throws Exception {
+		return dao.updatePassword(vo);
 	}
 
 	public int deleteMyInfo(ExamineeVO vo) throws Exception {

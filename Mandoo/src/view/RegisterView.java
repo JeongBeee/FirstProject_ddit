@@ -11,7 +11,7 @@ import vo.ExamineeVO;
 import vo.RegisterVO;
 
 public class RegisterView {
-	Scanner scanner = new Scanner(System.in);
+	private Scanner scanner = new Scanner(System.in);
 
 	public void welcome() {
 		System.out.println("기사 시험 졉수를 시작합니다.");
