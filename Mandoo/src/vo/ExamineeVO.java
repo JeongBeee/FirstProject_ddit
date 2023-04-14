@@ -74,4 +74,9 @@ public class ExamineeVO {
 		this.email = email;
 	}
 	
+    @Override
+    public String toString() {
+        return String.format("ExamineeVO [id=%s, password=%s]", id, password);
+    }
+	
 }
