@@ -11,6 +11,10 @@ public class ExamineeVO {
 		
 	}
 	
+	public ExamineeVO(String id) {
+		this.id = id;
+	}
+	
 	public ExamineeVO(String id, String password) {
 		this.id = id;
 		this.password = password;
