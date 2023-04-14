@@ -2,6 +2,8 @@ package view;
 
 import java.util.Scanner;
 
+import application.FrontController;
+import application.RegisterApplication;
 import dao.ExamineeDAO;
 import vo.ExamSiteVO;
 import vo.ExamVO;
@@ -16,7 +18,7 @@ public class RegisterView {
 		System.out.println("q버튼 입력 시 프로그램이 종료됩니다.");
 	}
 
-	public int signmenu(Scanner scanner) {
+	public int signMenu(Scanner scanner) {
 		System.out.println("-----------------------------------");
 		System.out.println("        1. 회원가입 | 2. 로그인         ");
 		System.out.println("-----------------------------------");
@@ -37,20 +39,16 @@ public class RegisterView {
 		String telNo = scanner.nextLine();
 		System.out.print("이메일: ");
 		String email = scanner.nextLine();
-		System.out.println("회원가입이 완료되었습니다. 첫 화면으로 돌아갑니다.");
-		System.out.println("-----------------------------------");
 		return new ExamineeVO(id, name, password, telNo, email);
 
 	}
 
 	public ExamineeVO login(Scanner scanner) { // 2. 로그인
 		System.out.println("-----------------------------------");
-		System.out.println("아이디: ");
+		System.out.print("아이디: ");
 		String id = scanner.nextLine();
-		System.out.println("비밀번호: ");
+		System.out.print("비밀번호: ");
 		String password = scanner.nextLine();
-		System.out.println("로그인 성공!");
-		System.out.println("-----------------------------------");
 		return new ExamineeVO(id, password);
 	}
 
