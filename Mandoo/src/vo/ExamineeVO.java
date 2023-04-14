@@ -25,6 +25,14 @@ public class ExamineeVO {
 		this.telNo = telNo;
 		this.email = email;
 	}
+// test code
+	public ExamineeVO(String password, String telNo, String email, String name) {
+		this.password = password;
+		this.telNo = telNo;
+		this.email = email;
+		this.name = name;
+	}
+//	
 	
 	public ExamineeVO(String id, String name, String password, String telNo, String email) {
 		this.id = id;
