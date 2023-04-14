@@ -5,6 +5,9 @@ public class RegisterVO {
 	private String examCode;
 	private String siteCode;
 
+	public RegisterVO() {
+	}
+
 	// deleteOneOfRegisterInfo(RegisterVO vo)용
 	public RegisterVO(String id) {
 		super();

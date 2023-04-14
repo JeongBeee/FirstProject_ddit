@@ -48,6 +48,13 @@ public class RegisterDAO {
 		return list;
 	}
 
+	
+	/**
+	 * 몰라?
+	 * @param searchId
+	 * @return
+	 * @throws Exception
+	 */
 	public RegisterVO selectRegisterInfo(String searchId) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",

@@ -13,19 +13,35 @@ import vo.RegisterVO;
 public class RegisterView {
 	private Scanner scanner = new Scanner(System.in);
 
+	/**
+	 * 프로그램 시작 시 등장하는 뷰
+	 */
 	public void welcome() {
 		System.out.println("기사 시험 졉수를 시작합니다.");
 		System.out.println("q버튼 입력 시 프로그램이 종료됩니다.");
 	}
 
-	public int signMenu(Scanner scanner) {
+	/**
+	 * 회원가입 / 로그인 선택 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 1: 회원가입, 2: 로그인
+	 */
+	public String signMenu(Scanner scanner) {
 		System.out.println("-----------------------------------");
 		System.out.println("        1. 회원가입 | 2. 로그인         ");
 		System.out.println("-----------------------------------");
 		System.out.print("메뉴를 선택하세요 > ");
-		return Integer.parseInt(scanner.nextLine());
+		return scanner.nextLine();
 	}
 
+	/**
+	 * 회원가입 시 정보를 기입하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 각 정보를 입력 받아 새로운 ExamineeVO 객체를 생성함
+	 * @throws Exception
+	 */
 	public ExamineeVO insertSignInfo(Scanner scanner) throws Exception { // 1. 회원가입
 		System.out.println("-----------------------------------");
 		System.out.println("회원정보를 입력하세요.");
@@ -43,6 +59,12 @@ public class RegisterView {
 
 	}
 
+	/**
+	 * 로그인 시 정보를 기입하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 로그인된 사용자의 id, password를 이용해 ExamineeVO 객체를 생성함
+	 */
 	public ExamineeVO login(Scanner scanner) { // 2. 로그인
 		System.out.println("-----------------------------------");
 		System.out.print("아이디: ");
@@ -52,6 +74,12 @@ public class RegisterView {
 		return new ExamineeVO(id, password);
 	}
 
+	/**
+	 * 로그인을 완료한 사용자가 접수를 하거나 접수내역을 조회하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 1: 접수하기, 2: 접수내역 조회
+	 */
 	public int registerMenu(Scanner scanner) {
 		System.out.println("-----------------------------------");
 		System.out.println("1. 접수하기 | 2. 접수내역 조회");
@@ -60,6 +88,12 @@ public class RegisterView {
 		return Integer.parseInt(scanner.nextLine());
 	}
 
+	/**
+	 * 로그인을 완료한 사용자가 접수할 수험장 / 과목 / 회차를 선택하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 입력된 정보로 RegisterVO 객체를 생성함.
+	 */
 	public RegisterVO registerSeq(Scanner scanner) { // 1. 접수하기
 		System.out.println("---------------------------------------------");
 		System.out.println("수험장을 선택하세요.");
@@ -84,9 +118,15 @@ public class RegisterView {
 		System.out.println("------------------------------------------------------------");
 		// String id =
 		// login에서 저장한 id를 불러와서 registerVO에 저장하려면
-		return new RegisterVO(null, choiceExam, choiceExamSite.concat(choiceExamTurn));
+		return new RegisterVO(new RegisterApplication().geteSession().getId(), choiceExam,
+				choiceExamSite.concat(choiceExamTurn));
 	}
 
+	/**
+	 * 시험 회차를 선택하는 뷰
+	 * 
+	 * @return 선택된 회차
+	 */
 	public String choiceExamTurn() {
 		String[] examTurns = new String[3];
 		examTurns[0] = "1. 23/03/15 오전 9시";
@@ -103,14 +143,17 @@ public class RegisterView {
 		System.out.print("응시할 시험 회차를 선택하세요 > ");
 		int choiceExamTurn = Integer.parseInt(scanner.nextLine());
 
-		// String confirmExamTurn = null;
-
 		String confirmExamTurn = examTurns[choiceExamTurn - 1].substring(3);
 
 		System.out.print("<" + confirmExamTurn + "> 시험을 선택하셨습니다.");
 		return confirmExamTurn;
 	}
 
+	/**
+	 * 수험장 지역을 선택하는 뷰
+	 * 
+	 * @return 선택된 지역
+	 */
 	public String choiceExamSite() {
 		String[] siteNames = new String[12];
 		siteNames[0] = "1. 서울";
@@ -129,9 +172,6 @@ public class RegisterView {
 		for (int i = 0; i < siteNames.length - 1; i++) {
 			System.out.print(siteNames[i] + " | ");
 		}
-
-		// System.out.print(siteNames[9] + " | ");
-		// System.out.print(siteNames[10] + " | ");
 		System.out.println(siteNames[11]);
 
 		System.out.print("수험장을 선택하세요 > ");
@@ -147,6 +187,11 @@ public class RegisterView {
 		return confirmSite;
 	}
 
+	/**
+	 * 과목을 선택하는 뷰
+	 * 
+	 * @return 선택된 과목
+	 */
 	public String choiceExam() {
 		String[] examNames = new String[10];
 		examNames[0] = "1. 토목기사";
@@ -179,6 +224,12 @@ public class RegisterView {
 		return confirmExam;
 	}
 
+	/**
+	 * 접수한 사용자가 접수내역을 확인 / 정보 수정을 선택하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 1: 접수 내역 확인 / 2. 회원정보 및 접수내역 수정
+	 */
 	public int registerCheckMenu(Scanner scanner) {
 		System.out.println("-----------------------------------");
 		System.out.println("1. 접수 내역 확인 | 2. 회원정보 및 접수내역 수정");
@@ -187,15 +238,25 @@ public class RegisterView {
 		return Integer.parseInt(scanner.nextLine());
 	}
 
-//	public int showRegister(Scanner scanner) { // 1. 접수 내역 확인 - 황금색
-//		System.out.println("-----------------------------------");
-////		System.out.println(id + siteName + examName + examDate); // 일단
-//		System.out.println("초기화면으로 돌아가시겠습니까? [y/n]");
-//		String choose = scanner.nextLine();
-//		System.out.println("-----------------------------------");
-//// int 맞는지, 접수내역 여러개 조회되도록 어떻게 할지
-//	}
+	/**
+	 * 접수된 시험을 확인하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 */
+	public void showRegister(Scanner scanner) { // 1. 접수 내역 확인 - 황금색
+		System.out.println("-----------------------------------");
+//		System.out.println(RegisterApplication.eSession.getId() + siteName + examName + examDate); // 일단
+		System.out.println("초기화면으로 돌아가시겠습니까? [y/n]");
+		String choose = scanner.nextLine();
+		System.out.println("-----------------------------------");
+	}
 
+	/**
+	 * 수정할 항목을 선택하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 1: 회원 정보 / 2. 접수 정보
+	 */
 	public int modifyinfoMenu(Scanner scanner) { // 2. 회원정보 및 접수내역 수정
 		System.out.println("-----------------------------------");
 		System.out.println("수정할 항목을 선택하세요.");
@@ -204,6 +265,12 @@ public class RegisterView {
 		return Integer.parseInt(scanner.nextLine());
 	}
 
+	/**
+	 * 회원 정보 중 수정할 항목을 선택하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 정보를 수정한 ExamineeVO 객체를 반환함
+	 */
 	public ExamineeVO modifySigninfoMenu(Scanner scanner) { // 2-1 회원 정보 수정
 		System.out.println("1. 비밀번호 | 2. 전화번호 | 3. 이메일 | 4. 회원 탈퇴");
 		// 1번 2번 3번 입력 어떻게 받는지?
@@ -216,31 +283,23 @@ public class RegisterView {
 		return new ExamineeVO(password, telNo, email);
 	}
 
-//	public ResgisterVO modifyExaminfoMenu(Scanner scanner) { // 2-2 접수 정보 수정
-//		System.out.println("1. 시험장 | 2. 과목 | 3. 응시회차 | 4. 접수 취소");
-//		// 1번 2번 3번 입력 어떻게 받는지?
-//		System.out.println("새 비밀번호를 입력하세요. : ");
-//		String password = scanner.nextLine();
-//		System.out.println("새 전화번호를 입력하세요. : ");
-//		String telNo = scanner.nextLine();
-//		System.out.println("새 이메일을 입력하세요. : ");
-//		String email = scanner.nextLine();
-//      System.out.println(id , sitename, examname, examdate "접수를 취소하시겠습니가? [y/n]");
-//		// 같은 문제
-//		return new RegisterVO(password, telNo, email);
-//
-//	public ResgisterVO modifyExaminfoMenu(Scanner scanner) { // 3. 접수 취소
-//		System.out.println("1. 시험장 | 2. 과목 | 3. 응시회차");
-//		// 1번 2번 3번 입력 어떻게 받는지?
-//		System.out.println("새 비밀번호를 입력하세요. : ");
-//		String password = scanner.nextLine();
-//		System.out.println("새 전화번호를 입력하세요. : ");
-//		String telNo = scanner.nextLine();
-//		System.out.println("새 이메일을 입력하세요. : ");
-//		String email = scanner.nextLine();
-//		// 같은 문제
-//		return new RegisterVO(password, telNo, email);
-//
-//	}
+	/**
+	 * 접수 내역 중 수정할 항목을 선택하는 뷰
+	 * 
+	 * @param scanner 사용자의 입력을 받음
+	 * @return 정보를 수정한 RegisterVO 객체를 반환함
+	 */
+	public RegisterVO modifyExaminfoMenu(Scanner scanner) { // 2-2 접수 정보 수정
+		System.out.println("1. 시험장 | 2. 과목 | 3. 응시회차 | 4. 접수 취소");
+		// 1번 2번 3번 입력 어떻게 받는지?
+		System.out.println("새 비밀번호를 입력하세요. : ");
+		String password = scanner.nextLine();
+		System.out.println("새 전화번호를 입력하세요. : ");
+		String telNo = scanner.nextLine();
+		System.out.println("새 이메일을 입력하세요. : ");
+		String email = scanner.nextLine();
+		// 같은 문제
+		return new RegisterVO(password, telNo, email);
+	}
 
 }
