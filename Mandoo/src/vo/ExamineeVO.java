@@ -84,7 +84,7 @@ public class ExamineeVO {
 	
     @Override
     public String toString() {
-        return String.format("ExamineeVO [id=%s, password=%s]", id, password);
+        return String.format("id=%s", id);
     }
 	
 }

@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Scanner;
 
 import vo.ExamineeVO;
 
 public class ExamineeDAO {
 	public static void main(String[] args) throws Exception {
 		ExamineeDAO dao = new ExamineeDAO();
-		System.out.println(dao.loginExaminee(new ExamineeVO("ksm", "1q2w3e4r")));
+//		System.out.println(dao.loginExaminee(new ExamineeVO("ksm", "1q2w3e4r")));
+		
+		dao.updatePassword(new ExamineeVO("ksm", "152152"));
 	}
 
 	/**
@@ -72,6 +73,30 @@ public class ExamineeDAO {
 		builder.append("EXAMINEE ");
 		builder.append("SET ");
 		builder.append("PASSWORD = ?, ");
+		builder.append("WHERE ");
+		builder.append("ID = ?");
+		String sql = builder.toString();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, vo.getPassword());
+		statement.setString(2, vo.getId());
+		int count = statement.executeUpdate();
+		statement.close();
+		connection.close();
+		return count;
+	}
+
+	
+	public int updateTelNo(ExamineeVO vo) throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String user = "mandoo";
+		String password = "mandoo";
+		Connection connection = DriverManager.getConnection(url, user, password);
+		StringBuilder builder = new StringBuilder();
+		builder.append("UPDATE ");
+		builder.append("EXAMINEE ");
+		builder.append("SET ");
+		builder.append("PASSWORD = ?, ");
 		builder.append("TELNO = ?, ");
 		builder.append("EMAIL = ?, ");
 		builder.append("WHERE ");
@@ -87,7 +112,6 @@ public class ExamineeDAO {
 		connection.close();
 		return count;
 	}
-
 //
 	/**
 	 * 회원 정보 업데이트 메소드
