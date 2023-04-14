@@ -68,11 +68,10 @@ public class RegisterView {
 		System.out.println("시험 과목을 선택하세요.");
 		String choiceExam = choiceExam(); // 시험코드
 		System.out.println("------------------------------------------------------------");
+		System.out.println("응시할 시험 회차를 선택하세요.");
 		String choiceExamTurn = choiceExamTurn();
 		System.out.println("------------------------------------------------------------");
-		// System.out.println(id + sitename + examname + confirmExamTurn + "시험을
-		// 선택하셨습니다.");
-		// System.out.println("계속 진행하시겠습니까? [y/n]"); // 맞냐
+		// System.out.println("계속 진행하시겠습니까? [y/n]"); 
 		// String answer = scanner.nextLine();
 		System.out.println("------------------------------------------------------------");
 		System.out.println("응시료는 19400원 입니다.");
@@ -84,9 +83,11 @@ public class RegisterView {
 		System.out.println("------------------------------------------------------------");
 		// String id =
 		// login에서 저장한 id를 불러와서 registerVO에 저장하려면
-		return new RegisterVO(null, choiceExam, choiceExamSite.concat(choiceExamTurn));
+		return new RegisterVO(RegisterApplication.session.getId(), choiceExam, choiceExamSite.concat(choiceExamTurn));
 	}
 
+	
+///////응시회차 선택 메서드
 	public String choiceExamTurn() {
 		String[] examTurns = new String[3];
 		examTurns[0] = "1. 23/03/15 오전 9시";
@@ -110,7 +111,8 @@ public class RegisterView {
 		System.out.print("<" + confirmExamTurn + "> 시험을 선택하셨습니다.");
 		return confirmExamTurn;
 	}
-
+	
+///////수험장 선택 메서드
 	public String choiceExamSite() {
 		String[] siteNames = new String[12];
 		siteNames[0] = "1. 서울";
@@ -147,6 +149,7 @@ public class RegisterView {
 		return confirmSite;
 	}
 
+///////시험과목 선택 메서드	
 	public String choiceExam() {
 		String[] examNames = new String[10];
 		examNames[0] = "1. 토목기사";

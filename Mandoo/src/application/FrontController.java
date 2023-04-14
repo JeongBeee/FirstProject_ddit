@@ -38,7 +38,50 @@ public class FrontController {
 					main.process();
 				}
 			}
+		}
+	}
+	
+	private void registerStart() { // 접수하기
+		int registermenu = registerView.registerMenu(scanner);
+		if (registermenu == 1) {
+			registerView.registerSeq(scanner);		
+			RegisterApplication.session =  ;
+		} else if (registermenu == 2) {
+			registerView.registerCheckMenu(scanner);
+		} else {
+			System.out.println("잘못된 입력입니다. 다시 입력하세요.");	
+			registerStart();
+		}
+	}
+	
+	private void showRegister() { // 접수하기
+		int registermenu = registerView.registerMenu(scanner);
+		if (registermenu == 1) {
+			registerView.registerSeq(scanner);			
+		} else if (registermenu == 2) {
+			registerView.registerCheckMenu(scanner);
+		} else {
+			System.out.println("잘못된 입력입니다. 다시 입력하세요.");	
+			registerStart();
+		}
+	}
+
+}
+/*private void registerStart() { // 접수하기
+	int choice = registerView.registerMenu(scanner);
+	if (choice == 1) {
+		registerView.registerSeq(scanner);
 		
+	} else if (choice == 2) {
+		registerView.registerCheckMenu(scanner);
+	} else {
+		System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+	}
+}*/
+
+// 접수 내역 확인
+// 회원정보 및 접수내역 수정
+
 //		int modifyinfoMenu = registerView.modifyinfoMenu(scanner);
 //		switch(modifyinfoMenu) {
 //		case 1: //비밀번호
@@ -47,29 +90,8 @@ public class FrontController {
 //		case 2: //전화번호
 //		case 3: //이메일
 //		case 4: //회원탈퇴			
-			// case 2: // 로그인
-			// ExamineeVO examinees = registerView.login(scanner);
-			// int selectExaminee = service.login(examinees);
-			// break;
+// case 2: // 로그인
+// ExamineeVO examinees = registerView.login(scanner);
+// int selectExaminee = service.login(examinees);
+// break;
 //		}
-		}
-	}
-
-	private void registerStart() {
-		int choice = registerView.registerMenu(scanner);
-		if (choice == 1) {
-			registerView.registerSeq(scanner);
-		} else if (choice == 2) {
-			registerView.registerCheckMenu(scanner);
-		} else {
-			System.out.println("잘못된 입력입니다. 다시 입력하세요.");
-//		case 1: //전화번호
-//		case 2: //이메일
-//		case 3: //회원탈퇴			
-			// case 2: // 로그인
-			// ExamineeVO examinees = registerView.login(scanner);
-			// int selectExaminee = service.login(examinees);
-			// break;
-		}
-	}
-}
