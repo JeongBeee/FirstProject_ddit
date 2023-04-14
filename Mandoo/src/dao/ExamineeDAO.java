@@ -172,4 +172,26 @@ public class ExamineeDAO {
 		connection.close();
 		return count;
 	}
+	
+	public boolean loginExaminee(ExamineeVO vo) throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String user = "mandoo";
+		String password = "mandoo";
+		Connection connection = DriverManager.getConnection(url, user, password);
+		StringBuilder builder = new StringBuilder();
+		builder.append("SELECT ");
+		builder.append(" * ");
+		builder.append("FROM ");
+		builder.append("EXAMINEE ");
+		builder.append("WHERE ");
+		builder.append("ID = ? ");
+		builder.append("PASSWORD = ? ");
+		String sql = builder.toString();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, vo.getId());
+		statement.setString(2, vo.getPassword());
+		
+		
+	}
 }
