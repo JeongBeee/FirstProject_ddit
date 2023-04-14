@@ -15,6 +15,11 @@ public class ExamineeVO {
 		this.id = id;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("ExamineeVO [id=%s, password=%s]", id, password);
+	}
+
 	public ExamineeVO(String id, String password) {
 		this.id = id;
 		this.password = password;
