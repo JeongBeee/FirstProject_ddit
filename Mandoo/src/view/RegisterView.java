@@ -1,6 +1,5 @@
 package view;
 
-import java.security.PublicKey;
 import java.util.Scanner;
 
 import dao.ExamineeDAO;
@@ -228,6 +227,7 @@ public class RegisterView {
 //		String telNo = scanner.nextLine();
 //		System.out.println("새 이메일을 입력하세요. : ");
 //		String email = scanner.nextLine();
+//      System.out.println(id , sitename, examname, examdate "접수를 취소하시겠습니가? [y/n]");
 //		// 같은 문제
 //		return new RegisterVO(password, telNo, email);
 //
