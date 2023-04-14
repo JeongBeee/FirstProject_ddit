@@ -15,7 +15,7 @@ import vo.RegisterVO;
 public class RegisterDAO {
 	public static void main(String[] args) throws Exception {
 		RegisterDAO dao = new RegisterDAO();
-		dao.updateInfo(dao.selectRegisterInfo("ksm"));
+		dao.updateExamCode(dao.selectRegisterInfo("ksm"));
 	}
 
 	/**
@@ -97,59 +97,109 @@ public class RegisterDAO {
 		return count;
 	}
 
-	public int updateInfo(RegisterVO vo) throws Exception {
+	/**
+	 * 사용자가 접수한 시험의 과목을 변경하는 메서드.
+	 * @param  vo 시험을 접수한 사용자.
+	 * @return 업데이트된 행의 개수를 반환함.
+	 * @throws Exception
+	 */
+	public int updateExamCode(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:XE", "mandoo",
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
 				"mandoo");
 
-		int count = 0;
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
+		String sql = buffer.toString();
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, vo.getExamCode());
+		preparedStatement.setString(2, vo.getId());
 
-		System.out.print("변경할 항목을 입력하세요. \n1. 시험장 | 2. 시험과목 | 3. 응시 일시 >> ");
-		int choice = Integer.parseInt(new Scanner(System.in).nextLine());
-		if (choice == 1) { // 시험장 도시 변경
-			StringBuffer buffer = new StringBuffer();
-			buffer.append(
-					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
-			String sql = buffer.toString();
+		int count = preparedStatement.executeUpdate();
+		close(null, preparedStatement, connection);
 
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, new Scanner(System.in).nextLine());
-			preparedStatement.setString(2, vo.getSiteCode().substring(2));
-			preparedStatement.setString(3, vo.getId());
-
-			count = preparedStatement.executeUpdate();
-			close(null, preparedStatement, connection);
-
-		} else if (choice == 2) { // 과목 변경
-			StringBuffer buffer = new StringBuffer();
-			buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
-			String sql = buffer.toString();
-
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, new Scanner(System.in).nextLine());
-			preparedStatement.setString(2, vo.getId());
-
-			count = preparedStatement.executeUpdate();
-			close(null, preparedStatement, connection);
-
-		}
-		if (choice == 3) { // 시험장 도시 변경
-			StringBuffer buffer = new StringBuffer();
-			buffer.append(
-					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
-			String sql = buffer.toString();
-
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, new Scanner(System.in).nextLine());
-			preparedStatement.setString(2, vo.getSiteCode().substring(2));
-			preparedStatement.setString(3, vo.getId());
-
-			count = preparedStatement.executeUpdate();
-			close(null, preparedStatement, connection);
-
-		}
 		return count;
 	}
+
+	public int updateSiteCode(RegisterVO vo) throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(
+				"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
+		String sql = buffer.toString();
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, "GG");
+		preparedStatement.setString(2, vo.getSiteCode().substring(2));
+		preparedStatement.setString(3, vo.getId());
+
+		int count = preparedStatement.executeUpdate();
+		close(null, preparedStatement, connection);
+
+		return count;
+
+	}
+
+	/**
+	 * 시험을 접수한 사용자의 접수 내역을 수정하는 메서드.
+	 * 
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+//	public int updateInfo(RegisterVO vo) throws Exception {
+//		Class.forName("oracle.jdbc.driver.OracleDriver");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:XE", "mandoo",
+//				"mandoo");
+//
+//		int count = 0;
+//
+//		if (choice == 1) { // 시험장 도시 변경
+//			StringBuffer buffer = new StringBuffer();
+//			buffer.append(
+//					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
+//			String sql = buffer.toString();
+//
+//			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//			preparedStatement.setString(1, new Scanner(System.in).nextLine());
+//			preparedStatement.setString(2, vo.getSiteCode().substring(2));
+//			preparedStatement.setString(3, vo.getId());
+//
+//			count = preparedStatement.executeUpdate();
+//			close(null, preparedStatement, connection);
+//
+//		} else if (choice == 2) { // 과목 변경
+//			StringBuffer buffer = new StringBuffer();
+//			buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
+//			String sql = buffer.toString();
+//
+//			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//			preparedStatement.setString(1, new Scanner(System.in).nextLine());
+//			preparedStatement.setString(2, vo.getId());
+//
+//			count = preparedStatement.executeUpdate();
+//			close(null, preparedStatement, connection);
+//
+//		}
+//		if (choice == 3) { // 시험장 도시 변경
+//			StringBuffer buffer = new StringBuffer();
+//			buffer.append(
+//					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
+//			String sql = buffer.toString();
+//
+//			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//			preparedStatement.setString(1, new Scanner(System.in).nextLine());
+//			preparedStatement.setString(2, vo.getSiteCode().substring(2));
+//			preparedStatement.setString(3, vo.getId());
+//
+//			count = preparedStatement.executeUpdate();
+//			close(null, preparedStatement, connection);
+//
+//		}
+//		return count;
+//	}
 
 	/**
 	 * 시험을 접수한 사용자의 모든 접수 내역을 삭제하는 메서드.

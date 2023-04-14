@@ -11,6 +11,11 @@ public class RegisterVO {
 		this.id = id;
 	}
 
+	public RegisterVO(String id, String what) {
+		super();
+		this.id = id;
+	}
+
 	public RegisterVO(String id, String examCode, String siteCode) {
 		super();
 		this.id = id;

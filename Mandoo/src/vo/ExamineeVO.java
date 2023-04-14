@@ -7,6 +7,10 @@ public class ExamineeVO {
 	private String telNo;
 	private String email;
 	
+	public ExamineeVO() {
+		
+	}
+	
 	public ExamineeVO(String id, String password) {
 		this.id = id;
 		this.password = password;
