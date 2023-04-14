@@ -5,7 +5,7 @@ import vo.ExamineeVO;
 
 public class ExamineeService {
 	ExamineeDAO dao = new ExamineeDAO();
-
+	
 	public int insertMyInfo(ExamineeVO vo) throws Exception {
 		return dao.insertMyInfo(vo);
 	}
