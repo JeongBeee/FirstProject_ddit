@@ -27,6 +27,7 @@ public class FrontController {
 				System.out.println("회원가입이 실패하였습니다. 다시 진행해주세요.");
 			}
 			break;
+<<<<<<< HEAD
 		case 2: // 로그인
 			ExamineeVO examinees = registerView.login(scanner);
 			int selectExaminee = service.selectMyInfo(examinees);
@@ -40,6 +41,12 @@ public class FrontController {
 		case 2: //전화번호
 		case 3: //이메일
 		case 4: //회원탈퇴			
+=======
+		//case 2: // 로그인
+		//	ExamineeVO examinees = registerView.login(scanner);
+		//	int selectExaminee = service.login(examinees);
+		//	break;
+>>>>>>> origin/main
 		}
     }
 	}
