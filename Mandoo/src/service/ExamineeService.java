@@ -1,5 +1,10 @@
 package service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import dao.ExamineeDAO;
 import vo.ExamineeVO;
 
@@ -17,5 +22,11 @@ public class ExamineeService {
 	public int deleteMyInfo(ExamineeVO vo) throws Exception {
 		return dao.deleteMyInfo(vo);
 	}
+	
+	public ExamineeVO selectExaminee(ExamineeVO vo) throws Exception {
+		return dao.selectExaminee(vo);
+	}
+	
+	
 
 }
