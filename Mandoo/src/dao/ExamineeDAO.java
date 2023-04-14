@@ -13,6 +13,10 @@ import java.util.Scanner;
 import vo.ExamineeVO;
 
 public class ExamineeDAO {
+	public static void main(String[] args) throws Exception {
+		ExamineeDAO dao = new ExamineeDAO();
+		System.out.println(dao.loginExaminee(new ExamineeVO("ksm", "1q2w3e4r")));
+	}
 
 	Scanner scanner = new Scanner(System.in);
 
@@ -178,49 +182,62 @@ public class ExamineeDAO {
 		return count;
 	}
 
-	public ExamineeVO loginExaminee(String id, String password) throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String user = "mandoo";
-		String password = "mandoo";
-		Connection connection = DriverManager.getConnection(url, user, password);
-		StringBuilder builder = new StringBuilder();
-		builder.append("SELECT ");
-		builder.append("ID ");
-		builder.append("PASSWORD");
-		builder.append("FROM ");
-		builder.append("EXAMINEE ");
-		String sql = builder.toString();
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, vo.getId());
-		statement.setString(2, vo.getPassword());
-		ResultSet resultSet = statement.executeQuery();
-		resultSet.close();
-		statement.close();
-		connection.close();
-	}
-
-	public List<ExamineeVO> selectExaminee() throws Exception {
+	public ExamineeVO loginExaminee(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
 		String user = "mandoo";
 		String password1 = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password1);
-		Statement statement = connection.createStatement();
 		StringBuilder builder = new StringBuilder();
 		builder.append("SELECT ");
-		builder.append("ID, ");
-		builder.append("PASSWORD, ");
+		builder.append(" * ");
 		builder.append("FROM ");
 		builder.append("EXAMINEE ");
+		builder.append("WHERE ");
+		builder.append("ID = ? ");
+		builder.append("AND ");
+		builder.append("PASSWORD = ? ");
 		String sql = builder.toString();
-		ResultSet resultSet = statement.executeQuery(sql);
-		List<ExamineeVO> list = new ArrayList<>();
-		while (resultSet.next()) {
-			String id = resultSet.getString("ID");
-			String password = resultSet.getString("PASSWORD");
-			list.add(new ExamineeVO(id, password));
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, vo.getId());
+		statement.setString(2, vo.getPassword());
+		ResultSet resultSet = statement.executeQuery();
+		ExamineeVO loginInfo = null;
+		if (resultSet.next()) {
+			String id = resultSet.getString("id");
+			String name = resultSet.getString("name");
+			String password = resultSet.getString("password");
+			String telNo = resultSet.getString("telNo");
+			String email = resultSet.getString("email");
+			loginInfo = new ExamineeVO(id, password, name, telNo, email);
 		}
-		return list;
+		resultSet.close();
+		statement.close();
+		connection.close();
+		return loginInfo;
 	}
+
+//	public List<ExamineeVO> selectExaminee() throws Exception {
+//		Class.forName("oracle.jdbc.driver.OracleDriver");
+//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String user = "mandoo";
+//		String password1 = "mandoo";
+//		Connection connection = DriverManager.getConnection(url, user, password1);
+//		Statement statement = connection.createStatement();
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("SELECT ");
+//		builder.append("ID, ");
+//		builder.append("PASSWORD, ");
+//		builder.append("FROM ");
+//		builder.append("EXAMINEE ");
+//		String sql = builder.toString();
+//		ResultSet resultSet = statement.executeQuery(sql);
+//		List<ExamineeVO> list = new ArrayList<>();
+//		while (resultSet.next()) {
+//			String id = resultSet.getString("ID");
+//			String password = resultSet.getString("PASSWORD");
+//			list.add(new ExamineeVO(id, password));
+//		}
+//		return list;
+//	}
 }
