@@ -37,21 +37,8 @@ public class FrontController {
 					FrontController main = new FrontController();
 					main.process();
 				}
-
 			}
-<<<<<<< HEAD
-			break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> main
-		case 2: // 로그인
-			ExamineeVO examinees = registerView.login(scanner);
-			int selectExaminee = service.selectMyInfo(examinees);
-			break;
-=======
+		
 //		int modifyinfoMenu = registerView.modifyinfoMenu(scanner);
 //		switch(modifyinfoMenu) {
 //		case 1: //비밀번호
@@ -65,7 +52,6 @@ public class FrontController {
 			// int selectExaminee = service.login(examinees);
 			// break;
 //		}
->>>>>>> origin/main
 		}
 	}
 
@@ -77,23 +63,13 @@ public class FrontController {
 			registerView.registerCheckMenu(scanner);
 		} else {
 			System.out.println("잘못된 입력입니다. 다시 입력하세요.");
-			
-<<<<<<< HEAD
-		case 2: //전화번호
-		case 3: //이메일
-		case 4: //회원탈퇴			
-<<<<<<< HEAD
-=======
->>>>>>> parent of c8675e0 (FrontController 수정)
-=======
->>>>>>> main
-		//case 2: // 로그인
-		//	ExamineeVO examinees = registerView.login(scanner);
-		//	int selectExaminee = service.login(examinees);
-		//	break;
->>>>>>> origin/main
-=======
->>>>>>> origin/main
+//		case 1: //전화번호
+//		case 2: //이메일
+//		case 3: //회원탈퇴			
+			// case 2: // 로그인
+			// ExamineeVO examinees = registerView.login(scanner);
+			// int selectExaminee = service.login(examinees);
+			// break;
 		}
 	}
 }

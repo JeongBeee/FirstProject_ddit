@@ -14,7 +14,7 @@ public class Test {
 		RegisterService rService = new RegisterService();
 		Scanner scanner = new Scanner(System.in);
 		view.welcome();
-		int menu = view.signmenu(scanner);
+		int menu = view.signMenu(scanner);
 		ExamineeVO examinee = null;
 		switch (menu) {
 		case 1:
