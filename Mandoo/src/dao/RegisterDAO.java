@@ -7,16 +7,28 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import vo.RegisterVO;
 
 public class RegisterDAO {
 	public static void main(String[] args) throws Exception {
+//		System.out.println("항목을 선택하세요.");
+//		System.out.println("1. 수험장 | 2. 과목 | 3. 응시 회차 | 4. 접수 취소");
 		RegisterDAO dao = new RegisterDAO();
-//		System.out.println(dao.selectRegisterInfo("ksm"));
-		dao.updateSiteDate(dao.selectRegisterInfo("ksm"));
+//		Scanner scanner = new Scanner(System.in);
+//		int choice = Integer.parseInt(scanner.nextLine());
+//		if (choice == 1) {
+//			String choiceSite = dao.choiceExam(scanner);
+//
+//			dao.updateSiteCode(dao.selectRegisterInfo("ksm"));
+//		}
+
+		dao.choice();
+
 	}
 
 	/**
@@ -100,7 +112,8 @@ public class RegisterDAO {
 
 	/**
 	 * 사용자가 접수한 시험의 과목을 변경하는 메서드.
-	 * @param  vo 시험을 접수한 사용자.
+	 * 
+	 * @param vo 시험을 접수한 사용자.
 	 * @return 업데이트된 행의 개수를 반환함.
 	 * @throws Exception
 	 */
@@ -124,7 +137,8 @@ public class RegisterDAO {
 
 	/**
 	 * 사용자가 접수한 시험의 지역을 변경하는 메서드.
-	 * @param  vo 시험을 접수한 사용자.
+	 * 
+	 * @param vo 시험을 접수한 사용자.
 	 * @return 업데이트된 행의 개수를 반환함.
 	 * @throws Exception
 	 */
@@ -160,14 +174,15 @@ public class RegisterDAO {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
 				"mandoo");
+		System.out.println("연결성공");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
 				"UPDATE REGISTER SET SITECODE = (SUBSTR(SITECODE, 1, 2) ||  ?) WHERE SUBSTR(SITECODE, 1, 2) = ? AND ID = ?");
 		String sql = buffer.toString();
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1, "2");
-		preparedStatement.setString(2, vo.getSiteCode().substring(0, 1));
+		preparedStatement.setString(1, "1");
+		preparedStatement.setString(2, vo.getSiteCode().substring(0, 2));
 		preparedStatement.setString(3, vo.getId());
 
 		int count = preparedStatement.executeUpdate();
@@ -176,65 +191,6 @@ public class RegisterDAO {
 		return count;
 
 	}
-
-	/**
-	 * 시험을 접수한 사용자의 접수 내역을 수정하는 메서드.
-	 * 
-	 * @param vo
-	 * @return
-	 * @throws Exception
-	 */
-//	public int updateInfo(RegisterVO vo) throws Exception {
-//		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:XE", "mandoo",
-//				"mandoo");
-//
-//		int count = 0;
-//
-//		if (choice == 1) { // 시험장 도시 변경
-//			StringBuffer buffer = new StringBuffer();
-//			buffer.append(
-//					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
-//			String sql = buffer.toString();
-//
-//			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setString(1, new Scanner(System.in).nextLine());
-//			preparedStatement.setString(2, vo.getSiteCode().substring(2));
-//			preparedStatement.setString(3, vo.getId());
-//
-//			count = preparedStatement.executeUpdate();
-//			close(null, preparedStatement, connection);
-//
-//		} else if (choice == 2) { // 과목 변경
-//			StringBuffer buffer = new StringBuffer();
-//			buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
-//			String sql = buffer.toString();
-//
-//			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setString(1, new Scanner(System.in).nextLine());
-//			preparedStatement.setString(2, vo.getId());
-//
-//			count = preparedStatement.executeUpdate();
-//			close(null, preparedStatement, connection);
-//
-//		}
-//		if (choice == 3) { // 시험장 도시 변경
-//			StringBuffer buffer = new StringBuffer();
-//			buffer.append(
-//					"UPDATE REGISTER SET SITECODE = ? || SUBSTR(SITECODE, 3) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
-//			String sql = buffer.toString();
-//
-//			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setString(1, new Scanner(System.in).nextLine());
-//			preparedStatement.setString(2, vo.getSiteCode().substring(2));
-//			preparedStatement.setString(3, vo.getId());
-//
-//			count = preparedStatement.executeUpdate();
-//			close(null, preparedStatement, connection);
-//
-//		}
-//		return count;
-//	}
 
 	/**
 	 * 시험을 접수한 사용자의 모든 접수 내역을 삭제하는 메서드.
@@ -300,5 +256,56 @@ public class RegisterDAO {
 			connection.close();
 		} catch (Exception e) {
 		}
+	}
+
+	public void choice() {
+		Map<String, String> siteMap = new HashMap<>();
+		siteMap.put("ECE", "토목기사");
+		siteMap.put("ELA", "조경기사");
+		siteMap.put("EGS", "가스기사");
+		siteMap.put("EEW", "전기공사기사");
+		siteMap.put("EET", "전자기사");
+		siteMap.put("EWD", "용접기사");
+		siteMap.put("ECI", "화공기사");
+		siteMap.put("EAT", "건축기사");
+		siteMap.put("EMM", "자동차정비기사");
+		siteMap.put("EIP", "정보처리기사");
+
+		System.out.print("| ");
+		for (int i = 0; i < siteMap.size(); i++) {
+			System.out.print((i + 1));
+		}
+	}
+
+	public String choiceExam(Scanner scanner) {
+		String[] examNames = new String[10];
+		examNames[0] = "1. 토목기사";
+		examNames[1] = "2. 조경기사";
+		examNames[2] = "3. 가스기사";
+		examNames[3] = "4. 전기공사기사";
+		examNames[4] = "5. 전자기사";
+		examNames[5] = "6. 용접기사";
+		examNames[6] = "7. 화공기사";
+		examNames[7] = "8. 건축기사";
+		examNames[8] = "9. 자동차정비기사";
+		examNames[9] = "10. 정보처리기사";
+
+		for (int i = 0; i < examNames.length - 1; i++) {
+			System.out.print(examNames[i] + " | ");
+		}
+
+		System.out.println(examNames[9]);
+
+		System.out.print("응시할 시험 코드를 입력하세요 > ");
+		int choiceExam = Integer.parseInt(scanner.nextLine());
+
+		String confirmExam = null;
+		if (choiceExam == 10) {
+			confirmExam = examNames[choiceExam - 1].substring(4);
+		} else {
+			confirmExam = examNames[choiceExam - 1].substring(3);
+		}
+		System.out.print(confirmExam + "를 선택하셨습니다.");
+		return confirmExam;
 	}
 }
