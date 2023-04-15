@@ -74,6 +74,7 @@ public class ExamineeVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -81,3 +82,12 @@ public class ExamineeVO {
 	}
 
 }
+=======
+	
+    @Override
+    public String toString() {
+        return String.format("id=%s", id);
+    }
+	
+}
+>>>>>>> main

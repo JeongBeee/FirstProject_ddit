@@ -165,6 +165,7 @@ public class RegisterView {
 	}
 	
 ///////수험장 선택 메서드
+<<<<<<< HEAD
 =======
 		System.out.println("▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃");
 		return new RegisterVO(new RegisterApplication().geteSession().getId(), choiceExam,
@@ -177,6 +178,8 @@ public class RegisterView {
 	 * @return 선택된 지역
 	 */
 >>>>>>> origin/heyjin
+=======
+>>>>>>> main
 	public String choiceExamSite() {
 		String[] siteNames = new String[12];
 		siteNames[0] = "1. 서울";
@@ -211,6 +214,9 @@ public class RegisterView {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> main
 ///////시험과목 선택 메서드	
 	public String choiceExam() {
 		String[] examNames = new String[10];

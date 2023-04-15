@@ -49,6 +49,9 @@ public class FrontController {
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> main
 	
 	private void registerStart() { // 접수하기
 		int registermenu = registerView.registerMenu(scanner);
@@ -104,6 +107,7 @@ public class FrontController {
 // int selectExaminee = service.login(examinees);
 // break;
 //		}
+<<<<<<< HEAD
 =======
 
 	public void goRegister() {
@@ -113,3 +117,5 @@ public class FrontController {
 
 }
 >>>>>>> origin/heyjin
+=======
+>>>>>>> main
