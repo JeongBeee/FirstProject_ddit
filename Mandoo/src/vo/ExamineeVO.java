@@ -6,34 +6,27 @@ public class ExamineeVO {
 	private String password;
 	private String telNo;
 	private String email;
-	
+
 	public ExamineeVO() {
-		
+
 	}
-	
+
 	public ExamineeVO(String id) {
 		this.id = id;
 	}
-	
+
 	public ExamineeVO(String id, String password) {
 		this.id = id;
 		this.password = password;
 	}
-	
-	public ExamineeVO(String password, String telNo, String email) {
+
+	public ExamineeVO(String password, String telNo, String email, String id) {
 		this.password = password;
 		this.telNo = telNo;
 		this.email = email;
+		this.id = id;
 	}
-// test code
-	public ExamineeVO(String password, String telNo, String email, String name) {
-		this.password = password;
-		this.telNo = telNo;
-		this.email = email;
-		this.name = name;
-	}
-//	
-	
+
 	public ExamineeVO(String id, String name, String password, String telNo, String email) {
 		this.id = id;
 		this.name = name;
@@ -81,10 +74,10 @@ public class ExamineeVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-    @Override
-    public String toString() {
-        return String.format("ExamineeVO [id=%s, password=%s]", id, password);
-    }
-	
+
+	@Override
+	public String toString() {
+		return String.format("id=%s", id);
+	}
+
 }
