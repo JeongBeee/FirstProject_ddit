@@ -108,15 +108,6 @@ public class RegisterView {
 
 		System.out.println("\n—————————————————— ✼ 과목 선택 ✼ ————————————————————");
 		String choiceExam = choiceExam(); // 시험코드
-<<<<<<< HEAD
-		System.out.println("------------------------------------------------------------");
-		System.out.println("응시할 시험 회차를 선택하세요.");
-		String choiceExamTurn = choiceExamTurn();
-		System.out.println("------------------------------------------------------------");
-		// System.out.println("계속 진행하시겠습니까? [y/n]"); 
-		// String answer = scanner.nextLine();
-		System.out.println("------------------------------------------------------------");
-=======
 
 		System.out.println("\n———————————————— ✼ 응시 회차 선택 ✼ ——————————————————");
 		String choiceExamTurn = choiceExamTurn();
@@ -124,49 +115,12 @@ public class RegisterView {
 		System.out.println("✓ 접수한 시험은 " + choiceExam + " " + choiceExamTurn + ", 수험장은 " + choiceExamSite + "입니다.");
 		System.out.println("\n———————————————————— ✼ 결제 ✼ ——————————————————————");
 		System.out.println("✼ 결제 ✼");
->>>>>>> origin/heyjin
 		System.out.println("응시료는 19400원 입니다.");
 		System.out.println("1. 신용카드 | 2. 계좌이체 | 3. 휴대폰 결제");
 		System.out.print("결제 방식을 선택하세요.▶ ︎");
 		int choosePayment = scanner.nextInt();
 		System.out.println();
 		System.out.println("접수가 완료되었습니다.");
-<<<<<<< HEAD
-		System.out.println("------------------------------------------------------------");
-		// String id =
-		// login에서 저장한 id를 불러와서 registerVO에 저장하려면
-		return new RegisterVO(RegisterApplication.session.getId(), choiceExam, choiceExamSite.concat(choiceExamTurn));
-	}
-
-	
-///////응시회차 선택 메서드
-	public String choiceExamTurn() {
-		String[] examTurns = new String[3];
-		examTurns[0] = "1. 23/03/15 오전 9시";
-		examTurns[1] = "2. 23/06/04 오전 9시";
-		examTurns[2] = "3. 23/07/23 오전 9시";
-		System.out.println("------------------------------------------------------------");
-
-		for (int i = 0; i < examTurns.length - 1; i++) {
-			System.out.print(examTurns[i] + " | ");
-		}
-		System.out.println(examTurns[2]);
-
-		System.out.println("------------------------------------------------------------");
-		System.out.print("응시할 시험 회차를 선택하세요 > ");
-		int choiceExamTurn = Integer.parseInt(scanner.nextLine());
-
-		// String confirmExamTurn = null;
-
-		String confirmExamTurn = examTurns[choiceExamTurn - 1].substring(3);
-
-		System.out.print("<" + confirmExamTurn + "> 시험을 선택하셨습니다.");
-		return confirmExamTurn;
-	}
-	
-///////수험장 선택 메서드
-<<<<<<< HEAD
-=======
 		System.out.println("▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃");
 		return new RegisterVO(new RegisterApplication().geteSession().getId(), choiceExam,
 				choiceExamSite.concat(choiceExamTurn));
@@ -177,9 +131,6 @@ public class RegisterView {
 	 * 
 	 * @return 선택된 지역
 	 */
->>>>>>> origin/heyjin
-=======
->>>>>>> main
 	public String choiceExamSite() {
 		String[] siteNames = new String[12];
 		siteNames[0] = "1. 서울";
@@ -213,42 +164,6 @@ public class RegisterView {
 		return confirmSite;
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> main
-///////시험과목 선택 메서드	
-	public String choiceExam() {
-		String[] examNames = new String[10];
-		examNames[0] = "1. 토목기사";
-		examNames[1] = "2. 조경기사";
-		examNames[2] = "3. 가스기사";
-		examNames[3] = "4. 전기공사기사";
-		examNames[4] = "5. 전자기사";
-		examNames[5] = "6. 용접기사";
-		examNames[6] = "7. 화공기사";
-		examNames[7] = "8. 건축기사";
-		examNames[8] = "9. 자동차정비기사";
-		examNames[9] = "10. 정보처리기사";
-
-		for (int i = 0; i < examNames.length - 1; i++) {
-			System.out.print(examNames[i] + " | ");
-		}
-
-		System.out.println(examNames[9]);
-
-		System.out.print("응시할 시험 코드를 입력하세요 > ");
-		int choiceExam = Integer.parseInt(scanner.nextLine());
-
-		String confirmExam = null;
-		if (choiceExam == 10) {
-			confirmExam = examNames[choiceExam - 1].substring(4);
-		} else {
-			confirmExam = examNames[choiceExam - 1].substring(3);
-		}
-		System.out.print(confirmExam + "를 선택하셨습니다.");
-		return confirmExam;
-=======
 	/**
 	 * 과목을 선택하는 뷰
 	 * 
@@ -257,7 +172,6 @@ public class RegisterView {
 	public String examCode() { 
 		Map<String, String> examMap = 
 		
->>>>>>> origin/heyjin
 	}
 
 	/**

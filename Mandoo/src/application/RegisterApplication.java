@@ -1,7 +1,5 @@
 package application;
 
-
-
 import java.util.Scanner;
 
 import vo.ExamineeVO;
@@ -16,7 +14,6 @@ public class RegisterApplication {
 	public static ExamineeVO eSession = new ExamineeVO();
 	public static RegisterVO rSession = new RegisterVO();
 
-	
 	public static void main(String[] args) throws Exception {
 		FrontController main = new FrontController();
 		main.process();
