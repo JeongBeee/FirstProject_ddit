@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import vo.RegisterVO;
 
@@ -18,11 +19,10 @@ import vo.RegisterVO;
 public class RegisterDAO {
 	public static void main(String[] args) throws Exception {
 		RegisterDAO dao = new RegisterDAO();
-//		System.out.println(dao.selectRegisterInfo("ksm").getSiteCode().substring(0, 2));
-		dao.updateExamDate(dao.selectRegisterInfo("ksm"));
+		dao.updateSiteCode(dao.selectRegisterInfo("ksm"));
 	}
 
-	/**
+	/** 
 	 * 특정 아이디의 모든 접수 정보를 출력하는 메서드.
 	 * 
 	 * @return 해당 아이디의 접수정보(RegisterVO)를 List형태로 출력
@@ -150,7 +150,7 @@ public class RegisterDAO {
 				"UPDATE REGISTER SET SITECODE = (? || SUBSTR(SITECODE, 3)) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
 		String sql = buffer.toString();
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1, vo.getSiteCode().substring(1, 2));
+		preparedStatement.setString(1, vo.getSiteCode().substring(0, 1));
 		preparedStatement.setString(2, vo.getSiteCode().substring(2));
 		preparedStatement.setString(3, vo.getId());
 
