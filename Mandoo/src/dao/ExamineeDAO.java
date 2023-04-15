@@ -24,7 +24,8 @@ public class ExamineeDAO {
 	 */
 	public int insertMyInfo(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -60,9 +61,10 @@ public class ExamineeDAO {
 		return count;
 	}
 
-	public int updateMyInfo(ExamineeVO vo) throws Exception {
+	public int updatePassword(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -70,17 +72,61 @@ public class ExamineeDAO {
 		builder.append("UPDATE ");
 		builder.append("EXAMINEE ");
 		builder.append("SET ");
-		builder.append("PASSWORD = ?, ");
-		builder.append("TELNO = ?, ");
-		builder.append("EMAIL = ? ");
+		builder.append("PASSWORD = ? ");
 		builder.append("WHERE ");
 		builder.append("ID = ? ");
 		String sql = builder.toString();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, vo.getPassword());
-		statement.setString(2, vo.getTelNo());
-		statement.setString(3, vo.getEmail());
-		statement.setString(4, vo.getId());
+		statement.setString(2, vo.getId());
+		int count = statement.executeUpdate();
+		statement.close();
+		connection.close();
+		return count;
+	}
+
+	public int updateTelNO(ExamineeVO vo) throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String user = "mandoo";
+		String password = "mandoo";
+		Connection connection = DriverManager.getConnection(url, user, password);
+		StringBuilder builder = new StringBuilder();
+		builder.append("UPDATE ");
+		builder.append("EXAMINEE ");
+		builder.append("SET ");
+		builder.append("TELNO = ? ");
+		builder.append("WHERE ");
+		builder.append("ID = ? ");
+		String sql = builder.toString();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, vo.getTelNo());
+		statement.setString(2, vo.getId());
+		int count = statement.executeUpdate();
+		statement.close();
+		connection.close();
+		return count;
+	}
+
+	public int updateEmail(ExamineeVO vo) throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String url = "jdbc:oracle:thin:@1localhost:1521:XE";
+		String user = "mandoo";
+		String password = "mandoo";
+		Connection connection = DriverManager.getConnection(url, user, password);
+		StringBuilder builder = new StringBuilder();
+		builder.append("UPDATE ");
+		builder.append("EXAMINEE ");
+		builder.append("SET ");
+		builder.append("EMAIL = ? ");
+		builder.append("WHERE ");
+		builder.append("ID = ? ");
+		String sql = builder.toString();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, vo.getEmail());
+		statement.setString(2, vo.getId());
 		int count = statement.executeUpdate();
 		statement.close();
 		connection.close();
@@ -96,7 +142,8 @@ public class ExamineeDAO {
 	 */
 	public int deleteMyInfo(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -105,12 +152,9 @@ public class ExamineeDAO {
 		builder.append("EXAMINEE ");
 		builder.append("WHERE ");
 		builder.append("ID = ? ");
-		builder.append("AND ");
-		builder.append("PASSWORD = ? ");
 		String sql = builder.toString();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, vo.getId());
-		statement.setString(2, vo.getPassword());
 		int count = statement.executeUpdate();
 		statement.close();
 		connection.close();
@@ -119,7 +163,8 @@ public class ExamineeDAO {
 
 	public ExamineeVO loginExaminee(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password1 = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password1);
@@ -155,6 +200,7 @@ public class ExamineeDAO {
 //	public List<ExamineeVO> selectExaminee() throws Exception {
 //		Class.forName("oracle.jdbc.driver.OracleDriver");
 //		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 //		String user = "mandoo";
 //		String password1 = "mandoo";
 //		Connection connection = DriverManager.getConnection(url, user, password1);

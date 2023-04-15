@@ -14,7 +14,7 @@ import vo.RegisterVO;
 /**
  * 
  * @author leehyejin
- * @since  2023/4/15 10:05 업데이트
+ * @since 2023/4/15 10:05 업데이트
  */
 public class RegisterDAO {
 	public static void main(String[] args) throws Exception {
@@ -22,16 +22,16 @@ public class RegisterDAO {
 		dao.updateSiteCode(dao.selectRegisterInfo("ksm"));
 	}
 
-	/** 
-	 * 특정 아이디의 모든 접수 정보를 출력하는 메서드.
+	/**
+	 *   특정 아이디의 모든 접수 정보를 출력하는 메서드.
 	 * 
 	 * @return 해당 아이디의 접수정보(RegisterVO)를 List형태로 출력
 	 * @throws Exception
 	 */
 	public List<RegisterVO> selectRegisterInfos() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo", "mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		Statement statement = connection.createStatement();
 		StringBuffer buffer = new StringBuffer();
@@ -51,17 +51,18 @@ public class RegisterDAO {
 		return list;
 	}
 
-	
 	/**
 	 * 몰라?
+	 * 
 	 * @param searchId
 	 * @return
 	 * @throws Exception
 	 */
 	public RegisterVO selectRegisterInfo(String searchId) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+//				"mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("SELECT * FROM REGISTER WHERE ID = ?");
@@ -91,8 +92,9 @@ public class RegisterDAO {
 	 */
 	public int insertRegisterInfo(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+//				"mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("INSERT INTO REGISTER VALUES (?, ?, ?)");
@@ -117,8 +119,9 @@ public class RegisterDAO {
 	 */
 	public int updateExamCode(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+//				"mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
@@ -142,8 +145,9 @@ public class RegisterDAO {
 	 */
 	public int updateSiteCode(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+//				"mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
@@ -158,7 +162,6 @@ public class RegisterDAO {
 		close(null, preparedStatement, connection);
 
 		return count;
-
 	}
 
 	/**
@@ -170,9 +173,9 @@ public class RegisterDAO {
 	 */
 	public int updateExamDate(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
-		System.out.println("연결성공");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+//				"mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
@@ -199,8 +202,9 @@ public class RegisterDAO {
 	 */
 	public int deleteOneOfRegisterInfo(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+//				"mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("DELETE FROM REGISTER WHERE ID = ?");
@@ -223,8 +227,9 @@ public class RegisterDAO {
 	 */
 	public int deleteRegisterInfo(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+//				"mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("DELETE FROM REGISTER WHERE ID = ? AND EXAMCODE = ? AND SITECODE = ?");

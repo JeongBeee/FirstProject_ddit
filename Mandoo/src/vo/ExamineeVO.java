@@ -77,6 +77,6 @@ public class ExamineeVO {
 
 	@Override
 	public String toString() {
-		return String.format("id=%s", id);
+		return String.format("%s\t%s\t%s\t%s\t%s", id, name, password, telNo, email);
 	}
 }

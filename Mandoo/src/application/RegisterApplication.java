@@ -17,7 +17,6 @@ public class RegisterApplication {
 	public static void main(String[] args) throws Exception {
 		FrontController main = new FrontController();
 		main.process();
-
 	}
 
 	public static ExamineeVO geteSession() {
