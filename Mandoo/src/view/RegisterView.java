@@ -101,11 +101,11 @@ public class RegisterView {
 	 * @param scanner 사용자의 입력을 받음
 	 * @return 1: 접수하기, 2: 접수내역 조회
 	 */
-	public int registerMenu(Scanner scanner) {
+	public String registerMenu(Scanner scanner) {
 		System.out.println("▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃\n");
 		System.out.println("\t      1. 접수하기 | 2. 마이페이지");
 		System.out.print("메뉴를 선택하세요 > ");
-		return Integer.parseInt(scanner.nextLine());
+		return scanner.nextLine();
 	}
 
 	/**
@@ -197,6 +197,7 @@ public class RegisterView {
 		for (String key : examMap.keySet()) {
 			System.out.print(examMap.get(key) + " | ");
 		}
+		System.out.println();
 
 		System.out.println("응시할 시험의 과목을 입력하세요 ▶ ︎");
 		String choiceExam = scanner.nextLine(); // 시험이름 입력

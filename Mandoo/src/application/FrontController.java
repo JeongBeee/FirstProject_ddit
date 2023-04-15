@@ -42,7 +42,7 @@ public class FrontController {
 		case "2":
 			ExamineeVO loginExaminee = eService.loginExaminee(view.login(scanner));
 			if (loginExaminee != null) {
-				System.out.println("\n로그인이 완료되었습니다. 마이페이지로 이동합니다.");
+				System.out.println("\n로그인이 완료되었습니다. 다음 페이지로 이동합니다.");
 				RegisterApplication.eSession = loginExaminee;
 				goRegister();
 				break;
@@ -60,13 +60,13 @@ public class FrontController {
 	}
 
 	public void goRegister() throws Exception {
-		int registerMenu = view.registerMenu(scanner);
+		String registerMenu = view.registerMenu(scanner);
 		switch (registerMenu) {
-		case 1:
+		case "1":
 			view.registerSeq(scanner);
 			goRegister();
 			break;
-		case 2:
+		case "2":
 			goMyPage();
 			break;
 		}
