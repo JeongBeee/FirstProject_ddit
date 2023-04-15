@@ -1,17 +1,20 @@
 package dao;
 
 import java.sql.Statement;
-import java.nio.Buffer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import vo.RegisterVO;
 
+/**
+ * 
+ * @author leehyejin
+ * @since  2023/4/15 10:05 업데이트
+ */
 public class RegisterDAO {
 	public static void main(String[] args) throws Exception {
 		RegisterDAO dao = new RegisterDAO();

@@ -1,5 +1,10 @@
 package vo;
 
+/**
+ * 
+ * @author leehyejin
+ * @since  2023/4/15 10:05 업데이트
+ */
 public class RegisterVO {
 	private String id;
 	private String examCode;

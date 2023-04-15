@@ -7,6 +7,11 @@ import service.ExamineeService;
 import view.RegisterView;
 import vo.ExamineeVO;
 
+/**
+ * 
+ * @author mandoone
+ * @since  2023/4/15 10:05 업데이트
+ */
 public class FrontController {
 	private ExamineeService service = new ExamineeService();
 	RegisterView registerView = new RegisterView();
