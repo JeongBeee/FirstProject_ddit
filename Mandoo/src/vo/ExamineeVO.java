@@ -74,20 +74,9 @@ public class ExamineeVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-<<<<<<< HEAD
 
 	@Override
 	public String toString() {
 		return String.format("id=%s", id);
 	}
-
 }
-=======
-	
-    @Override
-    public String toString() {
-        return String.format("id=%s", id);
-    }
-	
-}
->>>>>>> main

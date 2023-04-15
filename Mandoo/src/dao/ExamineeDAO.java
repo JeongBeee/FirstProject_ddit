@@ -8,20 +8,11 @@ import java.sql.ResultSet;
 import vo.ExamineeVO;
 
 public class ExamineeDAO {
-<<<<<<< HEAD
-//	public static void main(String[] args) throws Exception {
-//		ExamineeDAO dao = new ExamineeDAO();
-//		System.out.println(dao.loginExaminee(new ExamineeVO("ksm", "1q2w3e4r")));
-//		dao.updatePassword(new ExamineeVO("123123", "01012541254", "1q2w3e4r@gmail.com", "ksm"));
-//	}
-=======
 	public static void main(String[] args) throws Exception {
 		ExamineeDAO dao = new ExamineeDAO();
 //		System.out.println(dao.loginExaminee(new ExamineeVO("ksm", "1q2w3e4r")));
-		
-		dao.updatePassword(new ExamineeVO("ksm", "152152"));
+//		dao.updatePassword(new ExamineeVO("123123", "01012541254", "1q2w3e4r@gmail.com", "ksm"));
 	}
->>>>>>> main
 
 	/**
 	 * 회원 가입 메소드 생성자 함수 ExamineeVO(String, String, Saaring, String, String)를 사용해 필드에
@@ -80,30 +71,6 @@ public class ExamineeDAO {
 		builder.append("EXAMINEE ");
 		builder.append("SET ");
 		builder.append("PASSWORD = ?, ");
-		builder.append("WHERE ");
-		builder.append("ID = ?");
-		String sql = builder.toString();
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, vo.getPassword());
-		statement.setString(2, vo.getId());
-		int count = statement.executeUpdate();
-		statement.close();
-		connection.close();
-		return count;
-	}
-
-	
-	public int updateTelNo(ExamineeVO vo) throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String user = "mandoo";
-		String password = "mandoo";
-		Connection connection = DriverManager.getConnection(url, user, password);
-		StringBuilder builder = new StringBuilder();
-		builder.append("UPDATE ");
-		builder.append("EXAMINEE ");
-		builder.append("SET ");
-		builder.append("PASSWORD = ?, ");
 		builder.append("TELNO = ?, ");
 		builder.append("EMAIL = ? ");
 		builder.append("WHERE ");
@@ -119,97 +86,6 @@ public class ExamineeDAO {
 		connection.close();
 		return count;
 	}
-<<<<<<< HEAD
-
-
-=======
-//
-	/**
-	 * 회원 정보 업데이트 메소드
-	 * 
-	 * @param vo
-	 * @return
-	 * @throws Exception
-	 */
-//	public int updateInfo(ExamineeVO vo) throws Exception {
-//		int choice = Integer.parseInt(scanner.nextLine());
-//		int count = 0;
-//		String password = null;
-//		String telNo = null;
-//		String email = null;
-//
-//		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-//		String user = "mandoo";
-//		String dbPassword = "mandoo";
-//		Connection connection = DriverManager.getConnection(url, user, dbPassword);
-//
-//		if (choice == 1) {
-//			password = scanner.nextLine();
-//			telNo = vo.getTelNo();
-//			email = vo.getEmail();
-//
-//			StringBuilder builder = new StringBuilder();
-//			builder.append("UPDATE ");
-//			builder.append(" EXAMINEE ");
-//			builder.append(" SET ");
-//			builder.append(" PASSWAORD = ? ");
-//			builder.append(" WHERE ");
-//			builder.append(" ID = ? ");
-//			String sql = builder.toString();
-//			PreparedStatement statement = connection.prepareStatement(sql);
-//			statement.setString(1, vo.getPassword());
-//			statement.setString(2, vo.getId());
-//			statement.setString(2, vo.getId());
-//
-//			statement.close();
-//			connection.close();
-//			count = statement.executeUpdate();
-//
-//		} else if (choice == 2) {
-//			password = vo.getPassword();
-//			telNo = scanner.nextLine();
-//			email = vo.getEmail();
-//
-//			StringBuilder builder = new StringBuilder();
-//			builder.append("UPDATE ");
-//			builder.append(" EXAMINEE ");
-//			builder.append(" SET ");
-//			builder.append(" TELNO = ? ");
-//			builder.append(" WHERE ");
-//			builder.append(" ID = ? ");
-//			String sql = builder.toString();
-//			PreparedStatement statement = connection.prepareStatement(sql);
-//			statement.setString(1, vo.getTelNo());
-//			statement.setString(2, vo.getId());
-//			statement.close();
-//			connection.close();
-//			count = statement.executeUpdate();
-//
-//		} else if (choice == 3) {
-//			password = vo.getPassword();
-//			telNo = vo.getTelNo();
-//			email = scanner.nextLine();
-//
-//			StringBuilder builder = new StringBuilder();
-//			builder.append("UPDATE ");
-//			builder.append(" EXAMINEE ");
-//			builder.append(" SET ");
-//			builder.append(" EMAIL = ? ");
-//			builder.append(" WHERE ");
-//			builder.append(" ID = ? ");
-//			String sql = builder.toString();
-//			PreparedStatement statement = connection.prepareStatement(sql);
-//			statement.setString(1, vo.getEmail());
-//			statement.setString(2, vo.getId());
-//			statement.close();
-//			connection.close();
-//			count = statement.executeUpdate();
-//
-//		}
-//		return count;
-//	}
->>>>>>> main
 
 	/**
 	 * 회원 정보를 삭제하는 메소드

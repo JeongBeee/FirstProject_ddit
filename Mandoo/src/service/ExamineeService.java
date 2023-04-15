@@ -10,8 +10,8 @@ public class ExamineeService {
 		return dao.insertMyInfo(vo);
 	}
 
-	public int updatePassword(ExamineeVO vo) throws Exception {
-		return dao.updatePassword(vo);
+	public int updateMyInfo(ExamineeVO vo) throws Exception {
+		return dao.updateMyInfo(vo);
 	}
 
 	public int deleteMyInfo(ExamineeVO vo) throws Exception {
