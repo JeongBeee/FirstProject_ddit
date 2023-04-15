@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Statement;
+import java.nio.Buffer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,18 +12,14 @@ import java.util.Scanner;
 
 import vo.RegisterVO;
 
-/**
- * 
- * @author leehyejin
- * @since  2023/4/15 10:05 업데이트
- */
 public class RegisterDAO {
 	public static void main(String[] args) throws Exception {
 		RegisterDAO dao = new RegisterDAO();
-		dao.updateSiteCode(dao.selectRegisterInfo("ksm"));
+//		System.out.println(dao.selectRegisterInfo("ksm").getSiteCode().substring(0, 2));
+		dao.updateExamDate(dao.selectRegisterInfo("ksm"));
 	}
 
-	/** 
+	/**
 	 * 특정 아이디의 모든 접수 정보를 출력하는 메서드.
 	 * 
 	 * @return 해당 아이디의 접수정보(RegisterVO)를 List형태로 출력
@@ -51,13 +48,6 @@ public class RegisterDAO {
 		return list;
 	}
 
-	
-	/**
-	 * 몰라?
-	 * @param searchId
-	 * @return
-	 * @throws Exception
-	 */
 	public RegisterVO selectRegisterInfo(String searchId) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
@@ -150,7 +140,7 @@ public class RegisterDAO {
 				"UPDATE REGISTER SET SITECODE = (? || SUBSTR(SITECODE, 3)) WHERE SUBSTR(SITECODE, 3, 1) = ? AND ID = ?");
 		String sql = buffer.toString();
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1, vo.getSiteCode().substring(0, 1));
+		preparedStatement.setString(1, vo.getSiteCode().substring(1, 2));
 		preparedStatement.setString(2, vo.getSiteCode().substring(2));
 		preparedStatement.setString(3, vo.getId());
 
