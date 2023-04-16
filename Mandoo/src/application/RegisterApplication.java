@@ -27,3 +27,7 @@ public class RegisterApplication {
 		return rSession;
 	}
 }
+
+// 1. 탈퇴하면 회원가입페이지로 이동 
+// 2. 접수 정보 수정
+// 3. 마이페이지로 돌아가서 입력을 두번 해야 넘어가는거 수정

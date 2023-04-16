@@ -8,8 +8,8 @@ import vo.RegisterVO;
 public class RegisterService {
 	private RegisterDAO dao = new RegisterDAO();
 
-	public List<RegisterVO> selectRegisterInfos() throws Exception {
-		return dao.selectRegisterInfos();
+	public List<RegisterVO> selectRegisterInfos(String searchId) throws Exception {
+		return dao.selectRegisterInfos(searchId);
 	}
 
 	public RegisterVO selectRegisterInfo(String searchId) throws Exception {

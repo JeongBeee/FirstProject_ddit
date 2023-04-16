@@ -112,7 +112,7 @@ public class ExamineeDAO {
 	public int updateEmail(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 //		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String url = "jdbc:oracle:thin:@1localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);

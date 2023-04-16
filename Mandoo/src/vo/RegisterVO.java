@@ -57,7 +57,8 @@ public class RegisterVO {
 
 	@Override
 	public String toString() {
-		return String.format("%s\t%s\t%s", id, examCode, siteCode);
+		// 접수한 시험은 정보처리기사 2회차(날짜), 수험장은 서울입니다.
+		return String.format("접수한 시험은 %s %s회차, 수험장은 %s입니다.", examCode, siteCode.substring(2), siteCode.substring(0, 2));
 	}
 
 }

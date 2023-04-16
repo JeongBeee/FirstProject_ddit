@@ -28,16 +28,17 @@ public class RegisterDAO {
 	 * @return 해당 아이디의 접수정보(RegisterVO)를 List형태로 출력
 	 * @throws Exception
 	 */
-	public List<RegisterVO> selectRegisterInfos() throws Exception {
+	public List<RegisterVO> selectRegisterInfos(String searchId) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 //		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo", "mandoo");
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
-		Statement statement = connection.createStatement();
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("SELECT * FROM REGISTER");
+		buffer.append("SELECT * FROM REGISTER WHERE ID = ?");
 		String sql = buffer.toString();
-		ResultSet resultSet = statement.executeQuery(sql);
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, searchId);
+		ResultSet resultSet = preparedStatement.executeQuery();
 
 		List<RegisterVO> list = new ArrayList<>();
 		while (resultSet.next()) {
@@ -65,7 +66,7 @@ public class RegisterDAO {
 		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("SELECT * FROM REGISTER WHERE ID = ?");
+		buffer.append("SELECT * FROM REGISTER WHERE ID = ? AND EXAMCODE = ?");
 		String sql = buffer.toString();
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);

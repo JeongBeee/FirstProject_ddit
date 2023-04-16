@@ -23,8 +23,8 @@ public class FrontController {
 	private Scanner scanner = new Scanner(System.in);
 
 	public void process() throws Exception {
-		String choiceSign = view.signMenu(scanner);
-		switch (choiceSign) {
+		String menu = view.signMenu(scanner);
+		switch (menu) {
 		case "1":
 			try {
 				ExamineeVO signExaminee = view.insertSignInfo(scanner); // 회원가입 창 메서드를 불러서
@@ -44,6 +44,7 @@ public class FrontController {
 			if (loginExaminee != null) {
 				System.out.println("\n로그인이 완료되었습니다. 다음 페이지로 이동합니다.");
 				RegisterApplication.eSession = loginExaminee;
+				RegisterApplication.rSession.setId(loginExaminee.getId());
 				goRegister();
 				break;
 			} else {
@@ -60,40 +61,42 @@ public class FrontController {
 	}
 
 	public void goRegister() throws Exception {
-		String registerMenu = view.registerMenu(scanner);
-		switch (registerMenu) {
-		case "1":
-			view.registerSeq(scanner);
-			goRegister();
-			break;
-		case "2":
-			goMyPage();
-			break;
-		}
-
+	    String menu = "";
+	    while (!menu.equals("2")) {
+	        menu = view.registerMenu(scanner);
+	        switch (menu) {
+	            case "1":
+	                view.registerSeq(scanner);
+	                break;
+	            case "2":
+	                goMyPage();
+	                break;
+	        }
+	    }
 	}
 
-	private void goMyPage() {
-		view.registerCheckMenu(scanner);
-		switch (scanner.nextLine()) {
+
+	private void goMyPage() throws Exception {
+		String menu = view.registerCheckMenu(scanner);
+		switch (menu) {
 		case "1":
 			view.showRegister();
-			view.registerCheckMenu(scanner);
+			goMyPage();
 			break;
-
 		case "2":
 			goUpdatePage();
 			break;
 		}
 	}
 
-	private void goUpdatePage() {
-		view.modifyinfoMenu(scanner);
-		switch (scanner.nextLine()) {
+	private void goUpdatePage() throws Exception {
+		String menu = view.modifyinfoMenu(scanner);
+		switch (menu) {
 		case "1":
-
+			view.cancelExam(scanner);
 			break;
 		case "2":
+			view.modifySignInfoMenu(scanner);
 			break;
 		}
 	}
