@@ -30,10 +30,10 @@ public class FrontController {
 				ExamineeVO signExaminee = view.insertSignInfo(scanner); // 회원가입 창 메서드를 불러서
 				int insertExaminee = eService.insertMyInfo(signExaminee);
 				if (insertExaminee > 0) {
-					System.out.println("\n회원가입이 완료되었습니다. 처음으로 돌아갑니다.");
+					System.out.println("\n📢회원가입이 완료되었습니다. 처음으로 돌아갑니다.");
 				}
 			} catch (Exception e) {
-				System.out.println("\n잘못된 정보가 기입되었습니다. 다시 시도해주세요.");
+				System.out.println("\n📢잘못된 정보가 기입되었습니다. 다시 시도해주세요.");
 			} finally {
 				process();
 			}
@@ -42,18 +42,18 @@ public class FrontController {
 		case "2":
 			ExamineeVO loginExaminee = eService.loginExaminee(view.login(scanner));
 			if (loginExaminee != null) {
-				System.out.println("\n로그인이 완료되었습니다. 다음 페이지로 이동합니다.");
+				System.out.println("\n📢로그인이 완료되었습니다. 다음 페이지로 이동합니다.");
 				RegisterApplication.eSession = loginExaminee;
 				RegisterApplication.rSession.setId(loginExaminee.getId());
 				goRegister();
 				break;
 			} else {
-				System.out.println("로그인 정보가 일치하지 않습니다. 다시 시도해주세요.");
+				System.out.println("📢로그인 정보가 일치하지 않습니다. 다시 시도해주세요.");
 				process();
 			}
 			break;
 		default:
-			System.out.println("잘못된 입력입니다. 처음으로 돌아갑니다.");
+			System.out.println("📢잘못된 입력입니다. 처음으로 돌아갑니다.");
 			process();
 			break;
 		}
@@ -61,20 +61,19 @@ public class FrontController {
 	}
 
 	public void goRegister() throws Exception {
-	    String menu = "";
-	    while (!menu.equals("2")) {
-	        menu = view.registerMenu(scanner);
-	        switch (menu) {
-	            case "1":
-	                view.registerSeq(scanner);
-	                break;
-	            case "2":
-	                goMyPage();
-	                break;
-	        }
-	    }
-	}
+		while (true) {
+			String menu = view.registerMenu(scanner);
+			switch (menu) {
+			case "1":
+				view.registerSeq(scanner);
+				continue;
+			case "2":
+				goMyPage();
+				break;
+		}
 
+		}
+	}
 
 	private void goMyPage() throws Exception {
 		String menu = view.registerCheckMenu(scanner);
@@ -94,6 +93,7 @@ public class FrontController {
 		switch (menu) {
 		case "1":
 			view.cancelExam(scanner);
+			goRegister();
 			break;
 		case "2":
 			view.modifySignInfoMenu(scanner);

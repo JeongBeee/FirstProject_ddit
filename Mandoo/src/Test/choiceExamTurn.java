@@ -10,14 +10,14 @@ public class choiceExamTurn {
 		examTurns[0] = "1. 23/03/15 오전 9시";
 		examTurns[1] = "2. 23/06/04 오전 9시";
 		examTurns[2] = "3. 23/07/23 오전 9시";
-		System.out.println("------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
 
 		for (int i = 0; i < examTurns.length-1; i++) {
 			System.out.print(examTurns[i] + " | ");
 		}
 		System.out.println(examTurns[2]);
 		
-		System.out.println("------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.print("응시할 시험 회차를 선택하세요 > ");
 		int choiceExamTurn = Integer.parseInt(scanner.nextLine());
 
