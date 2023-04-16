@@ -23,6 +23,7 @@ public class FrontController {
 	private Scanner scanner = new Scanner(System.in);
 
 	public void process() throws Exception {
+		view.welcome();
 		String menu = view.signMenu(scanner);
 		switch (menu) {
 		case "1":
