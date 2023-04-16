@@ -117,11 +117,7 @@ public class RegisterView {
 	 * @return 1: 접수하기, 2: 접수내역 조회
 	 */
 	public String registerMenu(Scanner scanner) {
-		System.out.println(
-				"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃\n");
-		System.out.println(
-				"                                                              1. 접수하기📝 | 2. 마이페이지👤");
-		System.out.print("메뉴를 선택하세요 ▶︎ ");
+		
 		return scanner.nextLine();
 	}
 
@@ -343,54 +339,60 @@ public class RegisterView {
 	 * @throws Exception
 	 */
 	public void modifySignInfoMenu(Scanner scanner) throws Exception { // 2-1 회원 정보 수정
-		System.out.println(
-				"\n———————————————————————————————————————————————————————————————— ✼  회원 정보 수정 ✼ ————————————————————————————————————————————————————————————————");
-		System.out.println(
-				"                                                 1. 비밀번호🔑 | 2. 전화번호📞 | 3. 이메일📧 | 4. 회원 탈퇴🗑️");
-		System.out.print("수정할 항목을 선택하세요 ▶ ");
-		switch (scanner.nextLine()) {
-		case "1":
-			System.out.print("새로운 비밀번호를 입력하세요 ▶ ");
-			RegisterApplication.eSession.setPassword(scanner.nextLine());
-			int resetPassword = eService.updatePassword(RegisterApplication.eSession);
-			if (resetPassword > 0) {
-				System.out.println("📢비밀번호가 성공적으로 변경되었습니다.");
-			}
-			break;
-
-		case "2":
-			System.out.print("새로운 전화번호를 입력하세요 ▶ ");
-			RegisterApplication.eSession.setTelNo(scanner.nextLine());
-			int resetTelNo = eService.updateTelNO(RegisterApplication.eSession);
-			if (resetTelNo > 0) {
-				System.out.println("📢전화번호가 성공적으로 변경되었습니다.");
-			}
-			break;
-
-		case "3":
-			System.out.print("새로운 이메일을 입력하세요 ▶ ");
-			RegisterApplication.eSession.setEmail(scanner.nextLine());
-			int resetEmail = eService.updateEmail(RegisterApplication.eSession);
-			if (resetEmail > 0) {
-				System.out.println("📢이메일이 성공적으로 변경되었습니다.");
-			}
-			break;
-
-		case "4":
-			System.out.print("회원을 탈퇴하면 회원 정보와 접수 내역이 모두 삭제됩니다.");
-			System.out.print("정말 탈퇴를 진행하시겠습니까? [y/n] ▶ ");
-			if (scanner.nextLine().equalsIgnoreCase("y")) {
-				rService.deleteOneOfRegisterInfo(RegisterApplication.rSession);
-				eService.deleteMyInfo(RegisterApplication.eSession);
-				System.out.println("📢탈퇴가 성공적으로 완료되었습니다.");
-				signMenu(scanner);
-				break;
-			} else if (scanner.nextLine() == "n") {
-				System.out.println("📢마이페이지로 이동합니다.");
+		while (true) {
+			System.out.println(
+					"\n———————————————————————————————————————————————————————————————— ✼  회원 정보 수정 ✼ ————————————————————————————————————————————————————————————————");
+			System.out.println(
+					"                                                 1. 비밀번호🔑 | 2. 전화번호📞 | 3. 이메일📧 | 4. 회원 탈퇴🗑️");
+			System.out.print("수정할 항목을 선택하세요 ▶ ");
+			switch (scanner.nextLine()) {
+			case "1":
+				System.out.print("새로운 비밀번호를 입력하세요 ▶ ");
+				RegisterApplication.eSession.setPassword(scanner.nextLine());
+				int resetPassword = eService.updatePassword(RegisterApplication.eSession);
+				if (resetPassword > 0) {
+					System.out.println("📢비밀번호가 성공적으로 변경되었습니다.");
+				}
 				registerCheckMenu(scanner);
-			}
-			break;
+				break;
+
+			case "2":
+				System.out.print("새로운 전화번호를 입력하세요 ▶ ");
+				RegisterApplication.eSession.setTelNo(scanner.nextLine());
+				int resetTelNo = eService.updateTelNO(RegisterApplication.eSession);
+				if (resetTelNo > 0) {
+					System.out.println("📢전화번호가 성공적으로 변경되었습니다.");
+				}
+				registerCheckMenu(scanner);
+				break;
+
+			case "3":
+				System.out.print("새로운 이메일을 입력하세요 ▶ ");
+				RegisterApplication.eSession.setEmail(scanner.nextLine());
+				int resetEmail = eService.updateEmail(RegisterApplication.eSession);
+				if (resetEmail > 0) {
+					System.out.println("📢이메일이 성공적으로 변경되었습니다.");
+				}
+				registerCheckMenu(scanner);
+				break;
+
+			case "4":
+				System.out.print("회원을 탈퇴하면 회원 정보와 접수 내역이 모두 삭제됩니다.");
+				System.out.print("정말 탈퇴를 진행하시겠습니까? [y/n] ▶ ");
+				if (scanner.nextLine().equalsIgnoreCase("y")) {
+					rService.deleteOneOfRegisterInfo(RegisterApplication.rSession);
+					eService.deleteMyInfo(RegisterApplication.eSession);
+					System.out.println("📢탈퇴가 성공적으로 완료되었습니다.");
+					signMenu(scanner);
+					break;
+				} else if (scanner.nextLine() == "n") {
+					System.out.println("📢마이페이지로 이동합니다.");
+					registerCheckMenu(scanner);
+				}
+				break;
+			}	
 		}
+		
 	}
 
 	/**
@@ -405,7 +407,12 @@ public class RegisterView {
 		if (scanner.nextLine().equalsIgnoreCase("y")) {
 			rService.deleteOneOfRegisterInfo(RegisterApplication.rSession);
 			System.out.println("📢접수가 성공적으로 취소되었습니다.");
-			registerCheckMenu(scanner);
+			registerMenu(scanner);
+			System.out.println(
+					"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃\n");
+			System.out.println(
+					"                                                              1. 접수하기📝 | 2. 마이페이지👤");
+			System.out.print("메뉴를 선택하세요 ▶︎ ");
 		} else if (scanner.nextLine().equalsIgnoreCase("n")) {
 			System.out.println("📢마이페이지로 이동합니다.");
 			registerCheckMenu(scanner);
