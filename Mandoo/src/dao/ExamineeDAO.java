@@ -8,11 +8,6 @@ import java.sql.ResultSet;
 import vo.ExamineeVO;
 
 public class ExamineeDAO {
-	public static void main(String[] args) throws Exception {
-		ExamineeDAO dao = new ExamineeDAO();
-//		System.out.println(dao.loginExaminee(new ExamineeVO("ksm", "1q2w3e4r")));
-//		dao.updatePassword(new ExamineeVO("123123", "01012541254", "1q2w3e4r@gmail.com", "ksm"));
-	}
 
 	/**
 	 * 회원 가입 메소드 생성자 함수 ExamineeVO(String, String, Saaring, String, String)를 사용해 필드에
