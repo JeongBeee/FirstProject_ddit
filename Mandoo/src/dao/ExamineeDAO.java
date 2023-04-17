@@ -19,8 +19,8 @@ public class ExamineeDAO {
 	 */
 	public int insertMyInfo(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -58,8 +58,8 @@ public class ExamineeDAO {
 
 	public int updatePassword(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -82,8 +82,8 @@ public class ExamineeDAO {
 
 	public int updateTelNO(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -106,8 +106,8 @@ public class ExamineeDAO {
 
 	public int updateEmail(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -137,8 +137,8 @@ public class ExamineeDAO {
 	 */
 	public int deleteMyInfo(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password);
@@ -158,8 +158,8 @@ public class ExamineeDAO {
 
 	public ExamineeVO loginExaminee(ExamineeVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@192.168.142.33:1521:XE";
+//		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "mandoo";
 		String password1 = "mandoo";
 		Connection connection = DriverManager.getConnection(url, user, password1);

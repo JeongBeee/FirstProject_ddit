@@ -30,8 +30,8 @@ public class RegisterDAO {
 	 */
 	public List<RegisterVO> selectRegisterInfos(String searchId) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo", "mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo", "mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("SELECT * FROM REGISTER WHERE ID = ?");
@@ -61,10 +61,10 @@ public class RegisterDAO {
 	 */
 	public RegisterVO selectRegisterInfo(String searchId) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-//				"mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
-
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+//
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("SELECT * FROM REGISTER WHERE ID = ? AND EXAMCODE = ?");
 		String sql = buffer.toString();
@@ -93,10 +93,10 @@ public class RegisterDAO {
 	 */
 	public int insertRegisterInfo(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-//				"mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
-
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+//
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("INSERT INTO REGISTER VALUES (?, ?, ?)");
 		String sql = buffer.toString();
@@ -120,10 +120,10 @@ public class RegisterDAO {
 	 */
 	public int updateExamCode(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-//				"mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
-
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+//
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("UPDATE REGISTER SET EXAMCODE = ? WHERE ID = ?");
 		String sql = buffer.toString();
@@ -146,9 +146,9 @@ public class RegisterDAO {
 	 */
 	public int updateSiteCode(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-//				"mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
@@ -174,10 +174,10 @@ public class RegisterDAO {
 	 */
 	public int updateExamDate(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-//				"mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
-
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+//
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
 				"UPDATE REGISTER SET SITECODE = (SUBSTR(SITECODE, 1, 2) ||  ?) WHERE SUBSTR(SITECODE, 1, 2) = ? AND ID = ?");
@@ -203,10 +203,10 @@ public class RegisterDAO {
 	 */
 	public int deleteOneOfRegisterInfo(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-//				"mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
-
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+//
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("DELETE FROM REGISTER WHERE ID = ?");
 		String sql = buffer.toString();
@@ -228,10 +228,10 @@ public class RegisterDAO {
 	 */
 	public int deleteRegisterInfo(RegisterVO vo) throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
-//				"mandoo");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
-
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.142.33:1521:xe", "mandoo",
+				"mandoo");
+//		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mandoo", "mandoo");
+//
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("DELETE FROM REGISTER WHERE ID = ? AND EXAMCODE = ? AND SITECODE = ?");
 		String sql = buffer.toString();
